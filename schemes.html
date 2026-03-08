@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Schemes | BABAN DIGWADE JEWELLERS PATTAN KODOLI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --premium-gold: linear-gradient(135deg, #d4af37 0%, #f9f295 50%, #d4af37 100%);
+        }
+
+        body {
+            background-color: #faf9f6;
+        }
+
+        .schemes-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1573408302185-9127ff5f6133?auto=format&fit=crop&q=80&w=2000') center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .schemes-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(to top, #faf9f6, transparent);
+        }
+
+        .schemes-hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+
+        .schemes-hero-content.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .schemes-hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-serif);
+            letter-spacing: 2px;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .schemes-hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .plans-container {
+            max-width: 1200px;
+            margin: -100px auto 6rem;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .plan-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 4rem 3rem;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--glass-border);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .plan-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: var(--premium-gold);
+        }
+
+        .plan-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 40px 80px rgba(212, 175, 55, 0.15);
+        }
+
+        .plan-card h2 {
+            color: var(--maroon);
+            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            font-family: var(--font-serif);
+        }
+
+        .plan-tagline {
+            color: #888;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 2rem;
+            display: block;
+        }
+
+        .plan-highlight {
+            font-size: 3.5rem;
+            background: var(--premium-gold);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            margin: 2rem 0;
+            display: block;
+        }
+
+        .plan-details {
+            list-style: none;
+            padding: 0;
+            margin: 3rem 0;
+            text-align: left;
+        }
+
+        .plan-details li {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.05rem;
+            color: var(--charcoal);
+        }
+
+        .plan-details li i {
+            color: #d4af37;
+            font-size: 1.2rem;
+        }
+
+        .btn-premium {
+            background: var(--charcoal);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-premium:hover {
+            background: var(--maroon);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(128, 0, 0, 0.2);
+            color: white;
+        }
+
+        .why-choose-section {
+            background: white;
+            padding: 8rem 5%;
+            position: relative;
+        }
+
+        .benefit-card {
+            text-align: center;
+            padding: 2rem;
+            transition: var(--transition);
+            opacity: 0;
+            transform: scale(0.9);
+        }
+
+        .benefit-card.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .benefit-icon-wrapper {
+            width: 100px;
+            height: 100px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            transition: all 0.5s ease;
+        }
+
+        .benefit-card:hover .benefit-icon-wrapper {
+            background: var(--premium-gold);
+            transform: rotateY(360deg);
+        }
+
+        .benefit-icon-wrapper i {
+            font-size: 3rem;
+            color: var(--gold-dark);
+        }
+
+        .benefit-card:hover .benefit-icon-wrapper i {
+            color: white;
+        }
+
+        .inquiry-section {
+            background: linear-gradient(135deg, #faf9f6 0%, #f0ede5 100%);
+            padding: 10rem 5%;
+            position: relative;
+        }
+
+        .inquiry-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+        }
+
+        .inquiry-info {
+            background: var(--charcoal);
+            color: white;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .inquiry-info h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--gold);
+        }
+
+        .inquiry-form {
+            padding: 4rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            color: #999;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            border: none;
+            border-bottom: 2px solid #eee;
+            border-radius: 0;
+            padding: 1rem 0;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        @media (max-width: 992px) {
+            .inquiry-container {
+                grid-template-columns: 1fr;
+            }
+
+            .schemes-hero h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .plans-container {
+                margin-top: -50px;
+            }
+
+            .plan-card {
+                padding: 3rem 1.5rem;
+            }
+
+            .inquiry-info,
+            .inquiry-form {
+                padding: 2.5rem;
+            }
+        }
+
+        /* Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader">
+            <img src="images/BDJ.png" alt="BDJ Logo" class="preloader-logo">
+        </div>
+    </div>
+
+    <header>
+        <div class="top-bar">
+            <a href="index.html" class="logo">
+                <img src="images/BDJ.png" alt="Baban Digwade Jewellers Logo">
+                <span class="logo-text">
+                    <!--small
+                        style="display:block; font-size:0.6em; letter-spacing:2px; font-weight:500; text-transform:uppercase;">Be
+                        Ornated</small-->
+                    BABAN DIGWADE JEWELLERS <span
+                        style="font-size: 0.7em; text-transform: lowercase; font-weight: 400; margin-left: 5px;">pattan
+                        kodoli.</span>
+                    <small style="display:block; font-size:0.6em; letter-spacing:1px; font-weight:400;">be ornated |
+                        since
+                        1983</small>
+                </span>
+            </a>
+            <div class="top-actions">
+                <a href="https://wa.me/918390907528" target="_blank" class="phone-link"><i class="fab fa-whatsapp"></i>
+                    8390907528</a>
+                <div style="position: relative; display: inline-block;">
+                    <a href="#" class="gold-rate-btn" id="header-rate-btn"><i class="fas fa-chart-line"></i> Rate</a>
+                    <div id="rate-modal"
+                        style="display: none; position: absolute; top: calc(100% + 10px); right: 0; background: white; border: 1px solid var(--gold); border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 1.2rem; min-width: 220px; z-index: 1000; cursor: default; text-align: left;">
+                        <h4
+                            style="color: var(--maroon); margin-top: 0; margin-bottom: 0.8rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; font-size: 1rem; text-align:center;">
+                            Today's Rates</h4>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #666; font-size: 0.9rem;">18K Gold (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-gold-18k">...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #666; font-size: 0.9rem;">20K Gold (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-gold-20k">...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #666; font-size: 0.9rem;">22K Gold (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-gold-22k">...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #666; font-size: 0.9rem;">24K Gold (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-gold-24k">...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                            <span style="color: #666; font-size: 0.9rem;">Silver (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-silver">...</strong>
+                        </div>
+                        <div style="font-size: 0.75rem; color: #999; text-align: right; margin-top: 10px; font-style: italic;"
+                            id="modal-last-update">...</div>
+                        <div style="font-size: 0.7rem; color: #666; text-align: center; margin-top: 5px;">
+                            T & C applied. (Rates excluding GST.)
+                        </div>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <a href="rate.html"
+                                style="font-size: 0.8rem; color: var(--gold-dark); text-decoration: underline;">View
+                                details</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="auth.html"><i class="fas fa-user-circle"></i> Account</a>
+            </div>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="category.html?type=collections">Collections</a></li>
+                <li><a href="category.html?type=gold">Gold</a></li>
+                <li><a href="category.html?type=silver">Silver</a></li>
+                <!--li><a href="schemes.html" style="color: var(--maroon); border-bottom: 2px solid var(--maroon);">Monthly
+                        Schemes</a></li-->
+                <li><a href="category.html?type=gifting">Gifting Articles</a></li>
+            </ul>
+        </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const mobileBtn = document.getElementById('mobile-menu-btn');
+                const nav = document.querySelector('nav');
+                if (mobileBtn && nav) {
+                    mobileBtn.addEventListener('click', () => {
+                        nav.classList.toggle('nav-active');
+                    });
+                }
+
+                // Rate Modal Logic
+                const rateBtn = document.getElementById('header-rate-btn');
+                const rateModal = document.getElementById('rate-modal');
+
+                if (rateBtn && rateModal) {
+                    rateBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (rateModal.style.display === 'none' || rateModal.style.display === '') {
+                            rateModal.style.display = 'block';
+
+                            // Load rates from data.js
+                            if (typeof prices !== 'undefined') {
+                                if (prices.gold18k) document.getElementById('modal-gold-18k').textContent = `₹${(prices.gold18k / 10).toLocaleString()}`;
+                                if (prices.gold20k) document.getElementById('modal-gold-20k').textContent = `₹${(prices.gold20k / 10).toLocaleString()}`;
+                                document.getElementById('modal-gold-22k').textContent = `₹${(prices.gold22k / 10).toLocaleString()}`;
+                                document.getElementById('modal-gold-24k').textContent = `₹${(prices.gold24k / 10).toLocaleString()}`;
+                                document.getElementById('modal-silver').textContent = `₹${prices.silver.toLocaleString()}`;
+                                document.getElementById('modal-last-update').textContent = `Updated: ${prices.lastUpdate}`;
+                            }
+                        } else {
+                            rateModal.style.display = 'none';
+                        }
+                    });
+
+                    document.addEventListener('click', (e) => {
+                        if (!rateBtn.contains(e.target) && !rateModal.contains(e.target)) {
+                            rateModal.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        </script>
+    </header>
+
+    <main>
+        <section class="schemes-hero">
+            <div class="schemes-hero-content">
+                <span
+                    style="text-transform: uppercase; letter-spacing: 5px; font-weight: 600; color: var(--gold);">Invest
+                    in Excellence</span>
+                <h1>Secure Your Golden Future</h1>
+                <p>Exquisite investment plans designed to make the timeless allure of gold accessible for everyone.</p>
+            </div>
+        </section>
+
+        <section class="schemes-container">
+            <div id="monthly-schemes-section">
+                <h2 class="section-title reveal"
+                    style="text-align: center; margin-top: 5rem; margin-bottom: 3rem; color: var(--maroon); font-family: var(--font-serif);">
+                    Monthly Savings Schemes</h2>
+                <div class="plans-container" id="monthly-schemes-container" style="margin-top: 0;">
+                    <!-- Monthly schemes will be dynamically rendered here -->
+                </div>
+            </div>
+
+            <div id="weekly-schemes-section">
+                <h2 class="section-title reveal"
+                    style="text-align: center; margin-top: 8rem; margin-bottom: 3rem; color: var(--maroon); font-family: var(--font-serif);">
+                    Weekly Savings Schemes</h2>
+                <div class="plans-container" id="weekly-schemes-container" style="margin-top: 0; margin-bottom: 6rem;">
+                    <!-- Weekly schemes will be dynamically rendered here -->
+                </div>
+            </div>
+        </section>
+
+        <a href="https://wa.me/918390907528" class="whatsapp-float" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <script src="data.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const monthlyContainer = document.getElementById('monthly-schemes-container');
+                const weeklyContainer = document.getElementById('weekly-schemes-container');
+
+                // Get schemes from localStorage or data.js
+                let activeSchemes = JSON.parse(localStorage.getItem('bdj_schemes'));
+                if (!activeSchemes) {
+                    activeSchemes = typeof schemesList !== 'undefined' ? schemesList : [];
+                }
+
+                if (activeSchemes.length === 0) {
+                    const noMessage = '<p style="grid-column: 1/-1; text-align: center; color: var(--gold-dark); font-size: 1.2rem;">New schemes coming soon.</p>';
+                    monthlyContainer.innerHTML = noMessage;
+                    weeklyContainer.innerHTML = noMessage;
+                    return;
+                }
+
+                const renderScheme = (scheme, index) => {
+                    const delay = index * 0.2;
+                    let bulletsHtml = scheme.bullets.map(b => `<li><i class="${b.icon}"></i> ${b.text}</li>`).join('');
+
+                    return `
+                        <div class="plan-card visible" style="transition-delay: ${delay}s; opacity: 1; transform: translateY(0);">
+                            <span class="plan-tagline">${scheme.tagline}</span>
+                            <h2>${scheme.name}</h2>
+                            <div class="plan-highlight">${scheme.highlight}</div>
+                            <p style="color: #666; font-style: italic;">${scheme.description}</p>
+                            <ul class="plan-details">
+                                ${bulletsHtml}
+                            </ul>
+                            <a href="https://wa.me/918390907528" target="_blank" class="btn-premium" style="${scheme.themeColor !== 'var(--charcoal)' ? `background: ${scheme.themeColor};` : ''} text-decoration: none; display: inline-block;">Inquire on WhatsApp</a>
+                        </div>
+                    `;
+                };
+
+                const monthlySchemes = activeSchemes.filter(s => s.type === 'monthly' || !s.type);
+                const weeklySchemes = activeSchemes.filter(s => s.type === 'weekly');
+
+                if (monthlySchemes.length > 0) {
+                    monthlySchemes.forEach((scheme, index) => {
+                        monthlyContainer.innerHTML += renderScheme(scheme, index);
+                    });
+                } else {
+                    monthlyContainer.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No monthly schemes available right now.</p>';
+                }
+
+                if (weeklySchemes.length > 0) {
+                    weeklySchemes.forEach((scheme, index) => {
+                        weeklyContainer.innerHTML += renderScheme(scheme, index);
+                    });
+                } else {
+                    weeklySchemes.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666;">No weekly schemes available right now.</p>';
+                }
+            });
+        </script>
+
+        <section class="why-choose-section">
+            <h2 class="section-title reveal" style="text-align: center; margin-bottom: 5rem;">The BDJ Distinction</h2>
+            <div class="footer-grid" style="max-width: 1200px; margin: 0 auto; gap: 4rem;">
+                <div class="benefit-card reveal">
+                    <div class="benefit-icon-wrapper">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1rem;">Absolute Purity
+                    </h3>
+                    <p style="color: #777;">Hallmarked 22kt gold guaranteed for every gram you save with us.</p>
+                </div>
+                <div class="benefit-card reveal" style="transition-delay: 0.2s;">
+                    <div class="benefit-icon-wrapper">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1rem;">40 Years of
+                        Trust</h3>
+                    <p style="color: #777;">A legacy of honest dealings and transparent pricing.</p>
+                </div>
+                <div class="benefit-card reveal" style="transition-delay: 0.4s;">
+                    <div class="benefit-icon-wrapper">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3 style="font-family: var(--font-serif); font-size: 1.5rem; margin-bottom: 1rem;">Customer First
+                    </h3>
+                    <p style="color: #777;">Tailored assistance and flexible plans to suit your unique milestones.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="inquiry" class="inquiry-section">
+            <div class="inquiry-container reveal">
+                <div class="inquiry-info">
+                    <h2>Consult with our Scheme Expert</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.8);">Allow us to guide you
+                        through the best investment path for your future. Our experts are ready to curate a plan that
+                        perfectly aligns with your financial goals.</p>
+                    <div style="margin-top: 3rem; display: flex; gap: 20px; align-items: center;">
+                        <i class="fas fa-phone-alt" style="color: var(--gold); font-size: 1.5rem;"></i>
+                        <div>
+                            <span style="display: block; font-size: 0.8rem; color: #888;">Direct Line</span>
+                            <span style="font-size: 1.2rem; font-weight: 700;">+91 8390907528</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="inquiry-form">
+                    <form id="scheme-form">
+                        <div class="form-group">
+                            <label>Your Full Name</label>
+                            <input type="text" placeholder="John Doe" required style="width: 100%;">
+                        </div>
+                        <div class="form-group">
+                            <label>WhatsApp Number</label>
+                            <input type="tel" placeholder="+91 00000 00000" required style="width: 100%;">
+                        </div>
+                        <div class="form-group">
+                            <label>Select Scheme</label>
+                            <select style="width: 100%;">
+                                <option>11+1 Bonus Savings Plan</option>
+                                <option>Fixed Weight Accumulation</option>
+                                <option>Custom Investment Inquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Message</label>
+                            <textarea rows="2" placeholder="Tell us about your requirements..."
+                                style="width: 100%;"></textarea>
+                        </div>
+                        <a href="https://wa.me/918390907528" target="_blank" class="btn-premium"
+                            style="width: 100%; border: none; cursor: pointer; text-decoration: none; display: block; text-align: center;">Inquire
+                            on WhatsApp</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="rate.html">Rate</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p style="color: #ccc; font-size: 0.9rem;">
+                    Mandpe Galli Bazarpeth Line,<br>
+                    Pattan Kodoli<br>
+                    Email: babandigwade1983@gmail.com<br>
+                    Phone: <a href="https://wa.me/918390907528" target="_blank"
+                        style="color: #ccc; text-decoration: none;"><i class="fab fa-whatsapp"></i> +91 8390907528</a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
+                    <a href="#"><i class="fab fa-instagram" style="color: #E4405F;"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BABAN DIGWADE JEWELLERS
+                <span style="font-size: 0.7em; display: block; letter-spacing: 1px;">Be Ornated | since
+                    1983</span>
+                <span
+                    style="font-size: 0.85rem; letter-spacing: 2px; font-weight: 400; display: block; opacity: 0.85; font-family: var(--font-sans);">PATTAN
+                    KODOLI</span>. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('load', () => {
+            // Hero Animation - Triggered after preloader begins to fade
+            setTimeout(() => {
+                document.querySelector('.schemes-hero-content').classList.add('visible');
+            }, 3500);
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.plan-card, .reveal, .benefit-card').forEach(el => observer.observe(el));
+
+        document.getElementById('scheme-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Your request has been sent! A BDJ expert will contact you shortly.');
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>
