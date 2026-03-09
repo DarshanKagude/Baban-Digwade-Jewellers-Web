@@ -13,8 +13,6 @@ let prices = {
     silver: 74.2,
     lastUpdate: 'Feb 28, 2026 at 7:31 PM'
 };
-window.prices = prices;
-
 // Default celebrations (initially empty, admin adds via panel)
 let celebrations = [];
 
@@ -550,3 +548,12 @@ window.addEventListener('load', () => {
         }, 3000); // 3 seconds timeout
     }
 });
+
+// Expose to window for site-wide use
+window.prices = prices;
+window.DEFAULT_COLLECTIONS = DEFAULT_COLLECTIONS;
+window.getCollectionsList = getCollectionsList;
+window.celebrations = celebrations;
+window.schemesList = schemesList;
+window.heroBanner = heroBanner;
+window.products = products;
