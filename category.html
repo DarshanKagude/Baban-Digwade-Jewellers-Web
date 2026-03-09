@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category | BABAN DIGWADE JEWELLERS PATTAN KODOLI</title>
+    <meta name="description"
+        content="Explore beautiful jewellery collections at Baban Digwade Jewellers Pattan Kodoli (bdjewels.co.in). Find gold, silver, rings, necklaces, and gifting articles.">
+    <meta name="keywords"
+        content="Baban Digwade Jewellers, bdjewels.co.in, Jewellery Categories, Collections, Gold, Silver, Gifts">
+    <link rel="canonical" href="https://bdjewels.co.in/category.html">
+    <meta property="og:title" content="Jewellery Collections | Baban Digwade Jewellers Pattan Kodoli">
+    <meta property="og:description" content="Explore jewellery categories at bdjewels.co.in">
+    <meta property="og:url" content="https://bdjewels.co.in/category.html">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .category-header {
+            padding: 4rem 5% 2rem;
+            text-align: center;
+            background: var(--white);
+            border-bottom: 1px solid #eee;
+        }
+
+        .category-header h1 {
+            font-size: 3rem;
+            color: var(--maroon);
+            margin-bottom: 1rem;
+            text-transform: capitalize;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2.5rem;
+            padding: 4rem 5%;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem 1rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .product-price {
+            color: var(--gold-dark);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .filter-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: var(--off-white);
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+
+        .out-of-stock-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #d32f2f;
+            padding: 4px 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 20px;
+            border: 1px solid #d32f2f;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .card-out-of-stock img {
+            filter: grayscale(1) opacity(0.6);
+        }
+
+        .card-out-of-stock::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader">
+            <img src="images/BDJ.png" alt="BDJ Logo" class="preloader-logo">
+        </div>
+    </div>
+
+    <header>
+        <div class="top-bar">
+
+            <a href="index.html" class="logo">
+                <img src="images/BDJ.png" alt="Baban Digwade Jewellers Logo">
+                <span class="logo-text">
+                    <!--small
+                        style="display:block; font-size:0.6em; letter-spacing:2px; font-weight:500; text-transform:uppercase;">Be
+                        Ornated</small-->
+                    BABAN DIGWADE JEWELLERS <span
+                        style="font-size: 0.7em; text-transform: lowercase; font-weight: 400; margin-left: 5px;">pattan
+                        kodoli.</span>
+                    <small style="display:block; font-size:0.6em; letter-spacing:1px; font-weight:400;">be ornated |
+                        since
+                        1983</small>
+                </span>
+            </a>
+            <div class="top-actions">
+                <a href="https://wa.me/918390907528" target="_blank" class="phone-link"><i class="fab fa-whatsapp"></i>
+                    8390907528</a>
+                <div style="position: relative; display: inline-block;">
+                    <a href="#" class="gold-rate-btn" id="header-rate-btn"><i class="fas fa-chart-line"></i> Rate</a>
+                    <style>
+                        @media (max-width: 480px) {
+                            #rate-modal {
+                                right: auto !important;
+                                left: 50% !important;
+                                transform: translateX(-50%) !important;
+                            }
+                        }
+                    </style>
+                    <div id="rate-modal"
+                        style="display: none; position: absolute; top: calc(100% + 10px); right: 0; background: white; border: 1px solid var(--gold); border-radius: 4px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); padding: 1.2rem; min-width: 220px; z-index: 1000; cursor: default; text-align: left;">
+                        <h4
+                            style="color: var(--maroon); margin-top: 0; margin-bottom: 0.8rem; border-bottom: 1px solid #eee; padding-bottom: 0.5rem; font-size: 1rem; text-align:center;">
+                            Today's Rates</h4>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #666; font-size: 0.9rem;">18K Gold (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-gold-18k">...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #666; font-size: 0.9rem;">20K Gold (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-gold-20k">...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #666; font-size: 0.9rem;">22K Gold (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-gold-22k">...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span style="color: #666; font-size: 0.9rem;">24K Gold (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-gold-24k">...</strong>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;">
+                            <span style="color: #666; font-size: 0.9rem;">Silver (per gram)</span>
+                            <strong style="color: var(--gold-dark);" id="modal-silver">...</strong>
+                        </div>
+                        <div style="font-size: 0.75rem; color: #999; text-align: right; margin-top: 10px; font-style: italic;"
+                            id="modal-last-update">...</div>
+                        <div style="font-size: 0.7rem; color: #666; text-align: center; margin-top: 5px;">
+                            T & C applied. (Rates excluding GST.)
+                        </div>
+                        <div style="text-align: center; margin-top: 1rem;">
+                            <a href="rate.html"
+                                style="font-size: 0.8rem; color: var(--gold-dark); text-decoration: underline;">View
+                                details</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="auth.html"><i class="fas fa-user-circle"></i> Account</a>
+
+            </div>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <!--li><a href="category.html?type=new">New Arrivals</a></li-->
+                <li><a href="category.html?type=collections">Collections</a></li>
+                <li><a href="category.html?type=gold">Gold</a></li>
+                <li><a href="category.html?type=silver">Silver</a></li>
+                <li><a href="schemes.html">Monthly Schemes</a></li>
+                <!--li><a href="category.html?type=bangles">Bangles</a></li-->
+                <!--li><a href="category.html?type=necklaces">Necklaces</a></li-->
+                <!--li><a href="category.html?type=earrings">Earrings</a></li-->
+                <!--li><a href="category.html?type=rings">Rings</a></li-->
+                <li><a href="category.html?type=gifting">Gifting Articles</a></li>
+            </ul>
+        </nav>
+        <script type="module">
+            document.addEventListener('DOMContentLoaded', () => {
+                const mobileBtn = document.getElementById('mobile-menu-btn');
+                const nav = document.querySelector('nav');
+                if (mobileBtn && nav) {
+                    mobileBtn.addEventListener('click', () => {
+                        nav.classList.toggle('nav-active');
+                    });
+                }
+
+                // Rate Modal Logic
+                const rateBtn = document.getElementById('header-rate-btn');
+                const rateModal = document.getElementById('rate-modal');
+
+                if (rateBtn && rateModal) {
+                    rateBtn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        if (rateModal.style.display === 'none' || rateModal.style.display === '') {
+                            rateModal.style.display = 'block';
+
+                            // Load rates from window
+                            const prices = window.prices;
+                            if (prices) {
+                                if (prices.gold18k) document.getElementById('modal-gold-18k').textContent = `₹${(prices.gold18k / 10).toLocaleString()}`;
+                                if (prices.gold20k) document.getElementById('modal-gold-20k').textContent = `₹${(prices.gold20k / 10).toLocaleString()}`;
+                                document.getElementById('modal-gold-22k').textContent = `₹${(prices.gold22k / 10).toLocaleString()}`;
+                                document.getElementById('modal-gold-24k').textContent = `₹${(prices.gold24k / 10).toLocaleString()}`;
+                                document.getElementById('modal-silver').textContent = `₹${prices.silver.toLocaleString()}`;
+                                document.getElementById('modal-last-update').textContent = `Updated: ${prices.lastUpdate}`;
+                            }
+                        } else {
+                            rateModal.style.display = 'none';
+                        }
+                    });
+
+                    document.addEventListener('click', (e) => {
+                        if (!rateBtn.contains(e.target) && !rateModal.contains(e.target)) {
+                            rateModal.style.display = 'none';
+                        }
+                    });
+                }
+            });
+        </script>
+    </header>
+
+    <main>
+        <div class="category-header">
+            <h1 id="category-title">Jewellery Collection</h1>
+            <p>Explore our exquisite range of handcrafted masterpieces.</p>
+        </div>
+
+        <div class="category-container" id="category-container">
+            <aside class="sidebar" id="sidebar">
+
+
+                <!--div class="filter-group" id="ideal-for-group">
+                    <h3>Ideal For</h3>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="idealFor" value="Men" onchange="applyFilters()">
+                            Men
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="idealFor" value="Women" onchange="applyFilters()">
+                            Women
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="idealFor" value="Kids" onchange="applyFilters()">
+                            Kids
+                        </label>
+                    </div>
+                </div-->
+
+                <div class="filter-group" id="silver-subcategory-group" style="display: none;">
+                    <h3>Silver Category</h3>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="payal" onchange="applyFilters()">
+                            Payal
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="bangeles" onchange="applyFilters()">
+                            Bangles
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="rings" onchange="applyFilters()">
+                            Rings
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="kadas" onchange="applyFilters()">
+                            Kadas
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="earrings" onchange="applyFilters()">
+                            Earrings
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group" id="gold-subcategory-group" style="display: none;">
+                    <h3>Gold Category</h3>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="mangalsutr" onchange="applyFilters()">
+                            Mangalsutra
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="rings" onchange="applyFilters()">
+                            Rings
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="earrings" onchange="applyFilters()">
+                            Earrings
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="bangales" onchange="applyFilters()">
+                            Bangles
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="neckless" onchange="applyFilters()">
+                            Necklace
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="jhumka" onchange="applyFilters()">
+                            Jhumka
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group" id="gifting-subcategory-group" style="display: none;">
+                    <h3>Gifting Category</h3>
+                    <div class="filter-options">
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="wedding" onchange="applyFilters()">
+                            Wedding Gifting
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="corporate" onchange="applyFilters()">
+                            Corporate Gifting
+                        </label>
+                        <label class="filter-checkbox">
+                            <input type="checkbox" name="subCategory" value="personal" onchange="applyFilters()">
+                            Personal Gifting
+                        </label>
+                    </div>
+                </div>
+
+                <div class="filter-group" id="collections-group" style="display: none;">
+                    <h3>Collection Type</h3>
+                    <div class="filter-options" id="collection-filter-options">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+
+            </aside>
+
+            <div class="main-content">
+                <div class="filter-bar">
+                    <div>Showing <span id="item-count">0</span> items</div>
+                    <!--div id="sort-wrapper">
+                        Sort by:
+                        <select id="sort-select" onchange="applyFilters()">
+                            <option value="featured">Featured</option>
+                            <option value="low-high">Price: Low to High</option>
+                            <option value="high-low">Price: High to Low</option>
+                        </select>
+                    </div-->
+                </div>
+
+                <div class="product-grid" id="product-container">
+                    <!-- Products will be loaded via JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+
+
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <p style="color: #ccc; font-size: 0.9rem;">
+                    Mandpe Galli Bazarpeth Line,<br>
+                    Pattan Kodoli<br>
+                    Email: babandigwade1983@gmail.com<br>
+                    Phone: <a href="https://wa.me/918390907528" target="_blank"
+                        style="color: #ccc; text-decoration: none;"><i class="fab fa-whatsapp"></i> +91 8390907528</a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Follow Us</h4>
+                <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
+                    <a href="#"><i class="fab fa-instagram" style="color: #E4405F;"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BABAN DIGWADE JEWELLERS
+                <span style="font-size: 0.7em; display: block; letter-spacing: 1px;">Be Ornated | since
+                    1983</span>
+                <span
+                    style="font-size: 0.85rem; letter-spacing: 2px; font-weight: 400; display: block; opacity: 0.85; font-family: var(--font-sans);">PATTAN
+                    KODOLI</span>. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/918390907528" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script type="module" src="data.js"></script>
+    <script type="module" src="rate-sync.js"></script>
+    <script type="module">
+        // Simple script to handle dynamic category display
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type') || 'Jewellery';
+        const gender = urlParams.get('gender');
+
+        let titleText = type;
+        if (gender) {
+            titleText = `${gender.charAt(0).toUpperCase() + gender.slice(1)}'s ${type}`;
+        }
+
+        document.getElementById('category-title').textContent = titleText;
+        document.title = titleText + " | BABAN DIGWADE JEWELLERS PATTAN KODOLI";
+
+        const products = window.products || {};
+        const originalItems = products[type] || products.default || [];
+
+        // Populate collection filters
+        window.renderCollectionFilters = function () {
+            const container = document.getElementById('collection-filter-options');
+            if (!container) return;
+            const collections = window.getCollectionsList ? window.getCollectionsList() : [];
+            container.innerHTML = collections.map(c => `
+    <label class="filter-checkbox">
+        <input type="checkbox" name="collection" value="${c}" onchange="applyFilters()">
+        ${c} Collection
+    </label>
+    `).join('');
+        }
+        renderCollectionFilters();
+
+        // Show/Hide Gold and Silver subcategories
+        if (type === 'gold') {
+            const goldGroup = document.getElementById('gold-subcategory-group');
+            if (goldGroup) goldGroup.style.display = 'block';
+        } else if (type === 'silver') {
+            const silverGroup = document.getElementById('silver-subcategory-group');
+            if (silverGroup) silverGroup.style.display = 'block';
+        } else if (type === 'collections') {
+            const collectionGroup = document.getElementById('collections-group');
+            if (collectionGroup) collectionGroup.style.display = 'block';
+        } else if (type === 'gifting') {
+            const giftingGroup = document.getElementById('gifting-subcategory-group');
+            if (giftingGroup) giftingGroup.style.display = 'block';
+        }
+
+        // Handle initial subCategory filter from URL
+        const subCategory = urlParams.get('subCategory');
+        if (subCategory) {
+            const checkboxes = document.querySelectorAll(`input[name="subCategory"]`);
+            checkboxes.forEach(cb => {
+                if (cb.value === subCategory) cb.checked = true;
+            });
+        }
+
+        // Handle initial collection filter from URL (already partial, but making robust)
+        const requestedCollection = urlParams.get('collection');
+        if (requestedCollection) {
+            const checkboxes = document.querySelectorAll(`input[name="collection"]`);
+            checkboxes.forEach(cb => {
+                if (cb.value === requestedCollection) cb.checked = true;
+            });
+        }
+
+        // Sidebar and Sort handling
+        const sidebar = document.getElementById('sidebar');
+        const container = document.getElementById('category-container');
+        const sortWrapper = document.getElementById('sort-wrapper');
+
+        if (type === 'gold' || type === 'silver') {
+            if (sortWrapper) sortWrapper.style.display = 'none';
+        }
+
+        if (type === 'gold' || type === 'silver' || type === 'gifting') {
+            // Gold, Silver and Gifting now have sidebars for subcategories
+            if (sidebar) sidebar.style.display = 'block';
+            if (container) container.classList.remove('no-sidebar');
+        } else if (!['gold', 'silver', 'gifting', 'Jewellery'].includes(type) && !products[type]) {
+            // For static pages or direct categories, decide sidebar
+        }
+
+        // Hide Ideal For for Silver and Gold
+        if (type === 'silver' || type === 'gold') {
+            const idealForGroup = document.getElementById('ideal-for-group');
+            if (idealForGroup) idealForGroup.style.display = 'none';
+        }
+
+        window.applyFilters = function () {
+            const sortElement = document.getElementById('sort-select');
+            const sortVal = sortElement ? sortElement.value : 'featured';
+            const selectedIdealFor = Array.from(document.querySelectorAll('input[name="idealFor"]:checked')).map(cb =>
+                cb.value);
+            const selectedSubCategories = Array.from(document.querySelectorAll('input[name="subCategory"]:checked')).map(cb =>
+                cb.value);
+            const selectedCollections = Array.from(document.querySelectorAll('input[name="collection"]:checked')).map(cb =>
+                cb.value);
+
+            let filteredItems = [...originalItems];
+
+            // Filter by Collection
+            if (selectedCollections.length > 0) {
+                filteredItems = filteredItems.filter(item => {
+                    return item.details && selectedCollections.includes(item.details.collection);
+                });
+            }
+
+            // Filter by SubCategory
+            if (selectedSubCategories.length > 0) {
+                filteredItems = filteredItems.filter(item => {
+                    return selectedSubCategories.includes(item.subCategory);
+                });
+            }
+
+            // Filter by Ideal For
+            if (selectedIdealFor.length > 0) {
+                filteredItems = filteredItems.filter(item => {
+                    if (!item.idealFor) return false;
+                    return selectedIdealFor.some(val => item.idealFor.includes(val));
+                });
+            }
+
+            // Sorting
+            if (sortVal === 'low-high') {
+                filteredItems.sort((a, b) => (a.price || 0) - (b.price || 0));
+            } else if (sortVal === 'high-low') {
+                filteredItems.sort((a, b) => (b.price || 0) - (a.price || 0));
+            }
+
+            renderProducts(filteredItems);
+        }
+
+        function clearFilters() {
+            document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+            document.getElementById('sort-select').value = 'featured';
+            renderProducts(originalItems);
+        }
+
+        window.renderProducts = function (items) {
+            const container = document.getElementById('product-container');
+            container.innerHTML = '';
+            document.getElementById('item-count').textContent = items.length;
+
+            if (items.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; padding: 3rem; text-align: center; color: #666;">No products found matching your filters.</div>';
+                return;
+            }
+
+            items.forEach((item) => {
+                const isOutOfStock = item.stockStatus === 'out-of-stock';
+                const stockBadge = isOutOfStock ? '<div class="out-of-stock-badge">Out of Stock</div>' : '';
+
+                const card = `
+    <div class="product-card ${isOutOfStock ? 'card-out-of-stock' : ''}"
+        onclick="window.location.href='product-detail.html?code=${item.code}'">
+        ${stockBadge}
+        <div class="product-image">
+            <img src="${item.img}" alt="${item.name}">
+        </div>
+        <div class="product-info">
+            <div
+                style="font-size: 0.8rem; color: var(--gold-dark); margin-bottom: 0.5rem; font-weight: 700; cursor: pointer; display: inline-block;">
+                <i class="fas fa-tag" style="font-size: 0.7rem; margin-right: 4px;"></i>${item.code}
+            </div>
+            <h3 style="cursor: pointer;">${item.name}</h3>
+            ${item.price ? `<div class="product-price"
+                style="margin-top: 0.5rem; color: var(--maroon); font-weight: 700;">₹${item.price.toLocaleString()}
+            </div>` : ''}
+        </div>
+    </div>
+    `;
+                container.innerHTML += card;
+            });
+        }
+
+        // Initial render
+        window.addEventListener('load', () => {
+            if (typeof renderCollectionFilters === 'function') renderCollectionFilters();
+            if (urlParams.get('subCategory') || urlParams.get('collection')) {
+                applyFilters();
+            } else {
+                renderProducts(originalItems);
+            }
+        });
+    </script>
+</body>
+
+</html>
