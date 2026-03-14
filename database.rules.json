@@ -1,0 +1,16 @@
+{
+  "rules": {
+    ".read": true,
+    "settings": {
+      ".write": "auth != null && (auth.token.email == 'babandigwade1983@gmail.com' || auth.token.email == 'kagudedarshan4787@gmail.com')"
+    },
+    "products": {
+      ".write": "auth != null && (auth.token.email == 'babandigwade1983@gmail.com' || auth.token.email == 'kagudedarshan4787@gmail.com')"
+    },
+    "users": {
+        "$uid": {
+          ".write": "$uid === auth.uid || (auth != null && (auth.token.email == 'babandigwade1983@gmail.com' || auth.token.email == 'kagudedarshan4787@gmail.com'))"
+        }
+    }
+  }
+}
