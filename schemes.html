@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Gold Schemes & Savings Plans | BABAN DIGWADE JEWELLERS</title>
+    <meta name="description"
+        content="Join Baban Digwade Jewellers gold saving schemes in Pattan Kodoli. Explore our 11+1 Bonus Plan, Weight Accumulator, and flexible weekly gold savings. Zero making charges and maximum benefits.">
+    <meta name="keywords"
+        content="Baban Digwade Jewellers, gold schemes, 11+1 bonus plan, gold savings, Pattan Kodoli, monthly gold plan">
+    <link rel="canonical" href="https://bdjewels.co.in/schemes.html">
+    <meta property="og:title" content="Gold Saving Schemes | Baban Digwade Jewellers Pattan Kodoli">
+    <meta property="og:description"
+        content="Save smart in pure gold. Pay 11 months, we pay the 12th month bonus on our popular gold plans.">
+    <meta property="og:url" content="https://bdjewels.co.in/schemes.html">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/BDJ.png">
+    <link rel="apple-touch-icon" href="images/BDJ.png">
+    <meta property="og:image" content="images/BDJ.png">
+    <meta name="twitter:image" content="images/BDJ.png">
+
+    <!-- Schema.org for Google Search -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialProduct",
+      "name": "Baban Digwade Jewellers Monthly Gold Savings Scheme",
+      "provider": {
+        "@type": "JewelryStore",
+        "name": "Baban Digwade Jewellers",
+        "url": "https://bdjewels.co.in/"
+      },
+      "description": "Smart monthly gold accumulation scheme with 1 month bonus and zero making charges."
+    }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .faq-section {
+            max-width: 900px;
+            margin: 4rem auto 0;
+        }
+
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1.25rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--charcoal);
+            background: #fff;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--maroon);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.25rem;
+            color: #666;
+            font-size: 0.95rem;
+            display: none;
+            border-top: 1px solid var(--border-light);
+            padding-top: 1rem;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .benefits-banner {
+            background: linear-gradient(135deg, rgba(128, 0, 0, 0.05) 0%, rgba(212, 175, 55, 0.08) 100%);
+            border: 1px dashed var(--gold);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            margin: 4rem auto 0;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .benefit-icon {
+            font-size: 2.4rem;
+            color: var(--gold-dark);
+            margin-bottom: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader">
+            <img src="images/BDJ.png" alt="BDJ Logo" class="preloader-logo">
+        </div>
+    </div>
+
+    <header>
+        <div class="top-bar">
+            <a href="index.html" class="logo">
+                <img src="images/BDJ.png" alt="Baban Digwade Jewellers Logo">
+                <span class="logo-text">
+                    BABAN DIGWADE JEWELLERS <span
+                        style="font-size: 0.7em; text-transform: lowercase; font-weight: 400; margin-left: 5px;">pattan
+                        kodoli.</span>
+                    <small style="display:block; font-size:0.6em; letter-spacing:1px; font-weight:400;">be ornated |
+                        since 1983</small>
+                </span>
+            </a>
+            <div class="top-actions">
+                <a href="https://wa.me/918390907528" target="_blank" class="phone-link"><i class="fab fa-whatsapp"></i>
+                    8390907528</a>
+                <div style="position: relative; display: inline-block;">
+                    <a href="#" class="gold-rate-btn" id="home-rate-btn"><i class="fas fa-chart-line"></i> Rate</a>
+                    <div id="home-rate-popup" class="premium-rate-popup"
+                        style="display: none; position: absolute; top: calc(100% + 15px); right: 0; z-index: 1000; cursor: default;">
+                        <h4 class="rate-popup-header">Today's Rates</h4>
+
+                        <div class="rate-item">
+                            <span class="rate-label">18K Gold</span>
+                            <strong class="rate-value" id="popup-gold-18k">...</strong>
+                        </div>
+                        <div class="rate-item">
+                            <span class="rate-label">20K Gold</span>
+                            <strong class="rate-value" id="popup-gold-20k">...</strong>
+                        </div>
+                        <div class="rate-item">
+                            <span class="rate-label">22K Gold</span>
+                            <strong class="rate-value" id="popup-gold-22k">...</strong>
+                        </div>
+                        <div class="rate-item">
+                            <span class="rate-label">24K Gold</span>
+                            <strong class="rate-value" id="popup-gold-24k">...</strong>
+                        </div>
+                        <div class="rate-item">
+                            <span class="rate-label">Silver</span>
+                            <strong class="rate-value" id="popup-silver">...</strong>
+                        </div>
+
+                        <div class="rate-update-time" id="popup-last-update">...</div>
+
+                        <div class="rate-popup-footer">
+                            T & C applied. (Rates excluding GST.)
+                        </div>
+
+                        <a href="rate.html" class="rate-view-details">View full details <i class="fas fa-chevron-right"
+                                style="font-size: 0.7rem;"></i></a>
+                    </div>
+                </div>
+                <a href="auth.html" id="header-user-btn"><i class="fas fa-user-circle"></i> <span id="header-user-label">Account</span></a>
+            </div>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="category.html?type=collections">Collections</a></li>
+                <li><a href="category.html?type=gold">Gold</a></li>
+                <li><a href="category.html?type=silver">Silver</a></li>
+                <li><a href="schemes.html" class="active">Monthly Schemes</a></li>
+                <li><a href="category.html?type=gifting">Gifting Articles</a></li>
+            </ul>
+        </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const mobileBtn = document.getElementById('mobile-menu-btn');
+                const nav = document.querySelector('nav');
+                if (mobileBtn && nav) {
+                    mobileBtn.addEventListener('click', () => {
+                        nav.classList.toggle('nav-active');
+                    });
+                }
+
+                // Check active user session
+                const userSession = localStorage.getItem('bdj_user_session');
+                const userLabel = document.getElementById('header-user-label');
+                if (userSession && userLabel) {
+                    userLabel.textContent = 'My Account';
+                }
+            });
+        </script>
+    </header>
+
+    <main>
+        <section class="schemes-hero">
+            <h1>Gold Savings & Monthly Schemes</h1>
+            <p>Turn small monthly savings into pure 22K/24K gold jewellery for weddings, milestones, and family legacy. Enjoy exclusive bonuses and zero making charges.</p>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Our Popular Schemes</h2>
+            <p class="section-subtitle">Choose the perfect plan tailored to your future jewellery aspirations.</p>
+
+            <div class="schemes-grid" id="schemes-container">
+                <!-- Dynamically loaded via JavaScript / Firebase -->
+            </div>
+
+            <!-- Savings Calculator -->
+            <div class="calc-wrapper">
+                <h3 style="text-align: center; color: var(--maroon); font-size: 1.8rem; margin-bottom: 0.5rem;">Scheme Maturity Calculator</h3>
+                <p style="text-align: center; color: #666; font-size: 0.95rem; margin-bottom: 2rem;">Estimate your purchase value with the 11+1 BDJ Bonus Plan</p>
+                <div class="calc-grid">
+                    <div class="calc-slider-box">
+                        <label for="monthly-range">Monthly Installment Amount (₹):</label>
+                        <div class="calc-amount-display" id="display-installment">₹5,000</div>
+                        <input type="range" id="monthly-range" class="calc-range" min="1000" max="50000" step="500" value="5000">
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #888; margin-top: 5px;">
+                            <span>₹1,000</span>
+                            <span>₹25,000</span>
+                            <span>₹50,000</span>
+                        </div>
+                    </div>
+                    <div class="calc-result-box">
+                        <span>Total Purchase Value</span>
+                        <strong id="display-total">₹60,000</strong>
+                        <div style="font-size: 0.85rem; color: #555; margin-top: 0.8rem; line-height: 1.4;">
+                            You pay (11 Months): <b id="display-paid">₹55,000</b><br>
+                            BDJ Contribution (12th Month): <b style="color: var(--gold-dark);" id="display-bonus">₹5,000 FREE</b>
+                        </div>
+                        <a href="javascript:void(0)" onclick="joinCalculatedScheme()" class="btn" style="margin-top: 1.2rem; width: 100%; font-size: 0.85rem;">
+                            <i class="fab fa-whatsapp"></i> Enroll in this Plan
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transparency & Benefits -->
+            <div class="benefits-banner">
+                <div>
+                    <div class="benefit-icon"><i class="fas fa-certificate"></i></div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 0.4rem;">100% BIS Hallmarked</h4>
+                    <p style="font-size: 0.88rem; color: #666;">All jewellery redeemed is certified pure 22KT gold.</p>
+                </div>
+                <div>
+                    <div class="benefit-icon"><i class="fas fa-percentage"></i></div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 0.4rem;">Zero Making Charges*</h4>
+                    <p style="font-size: 0.88rem; color: #666;">Avail special waivers on making charges upon scheme maturity.</p>
+                </div>
+                <div>
+                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4 style="font-size: 1.1rem; margin-bottom: 0.4rem;">Guaranteed Safety</h4>
+                    <p style="font-size: 0.88rem; color: #666;">Over 40+ years of uncompromised trust since 1983 in Pattan Kodoli.</p>
+                </div>
+            </div>
+
+            <!-- FAQs -->
+            <div class="faq-section">
+                <h3 style="text-align: center; color: var(--maroon); font-size: 1.8rem; margin-bottom: 1.5rem;">Frequently Asked Questions</h3>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How does the 11+1 Bonus Scheme work?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You pay a fixed installment every month for 11 consecutive months. On the 12th month, Baban Digwade Jewellers contributes the 12th installment amount completely FREE. You can then purchase your dream gold or silver jewellery for the total 12-month accumulated value.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What is the minimum monthly installment amount?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        The minimum monthly installment starts at just ₹1,000 per month, and can be increased in multiples of ₹500 according to your preference.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can I make monthly payments?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        You can pay in person at our showroom in Pattan Kodoli or via secure UPI / Bank Transfer directly with instant WhatsApp receipt verification.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I redeem the scheme for gold coins or custom jewellery?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Upon completion of the scheme tenure, you can select any gold or silver jewellery from our entire showroom collection, including necklaces, bangles, rings, or custom-ordered pieces.
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Unified Footer with Connected Links -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rate.html">Today's Rates</a></li>
+                    <li><a href="schemes.html">Monthly Schemes</a></li>
+                    <li><a href="category.html?type=collections">Featured Collections</a></li>
+                    <li><a href="auth.html">My Account</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Jewellery Categories</h4>
+                <ul>
+                    <li><a href="category.html?type=gold">Gold Collection (916 BIS)</a></li>
+                    <li><a href="category.html?type=gold&subCategory=rings">Gold Rings</a></li>
+                    <li><a href="category.html?type=gold&subCategory=neckless">Necklaces & Sets</a></li>
+                    <li><a href="category.html?type=gold&subCategory=bangales">Bangles & Kadas</a></li>
+                    <li><a href="category.html?type=gold&subCategory=mangalsutr">Mangalsutras</a></li>
+                    <li><a href="category.html?type=silver">Silver Articles & Payal</a></li>
+                    <li><a href="category.html?type=gifting">Gifting Articles & Coins</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Showroom Contact</h4>
+                <p style="color: #ccc; font-size: 0.9rem; line-height: 1.6;">
+                    Mandpe Galli Bazarpeth Line,<br>
+                    Pattan Kodoli, Maharashtra<br>
+                    Email: babandigwade1983@gmail.com<br>
+                    Phone: <a href="https://wa.me/918390907528" target="_blank"
+                        style="color: #ccc; text-decoration: none;"><i class="fab fa-whatsapp"></i> +91 8390907528</a><br>
+                    Timings: 10:00 AM – 8:30 PM (All 7 Days)
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <p style="color: #bbb; font-size: 0.88rem; margin-bottom: 1rem;">Follow our latest gold & diamond showcases on social media.</p>
+                <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
+                    <a href="https://www.instagram.com/digwade.jewellers?igsh=MXc2ZnU5Mml1ZWZrZw==" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram" style="color: #E4405F;"></i></a>
+                    <a href="https://wa.me/918390907528" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp" style="color: #25D366;"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BABAN DIGWADE JEWELLERS
+                <span style="font-size: 0.7em; display: block; letter-spacing: 1px;">Be Ornated | since 1983</span>
+                <span
+                    style="font-size: 0.85rem; letter-spacing: 2px; font-weight: 400; display: block; opacity: 0.85; font-family: var(--font-sans);">PATTAN
+                    KODOLI</span>. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/918390907528" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script type="module" src="data.js"></script>
+    <script type="module" src="rate-sync.js"></script>
+    <script type="module" src="product-sync.js"></script>
+    <script src="chatbot.js"></script>
+    <script type="module">
+        import { db, ref, onValue } from './firebase-config.js';
+
+        // Render Schemes
+        function renderSchemesList(schemes) {
+            const container = document.getElementById('schemes-container');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const list = schemes && schemes.length > 0 ? schemes : (window.schemesList || []);
+
+            list.forEach(scheme => {
+                const card = document.createElement('div');
+                card.className = 'scheme-card';
+
+                const bulletsHtml = scheme.bullets ? scheme.bullets.map(b => `
+                    <li><i class="${b.icon || 'fas fa-star'}"></i> <span>${b.text}</span></li>
+                `).join('') : '';
+
+                card.innerHTML = `
+                    <div class="scheme-header" style="background: ${scheme.themeColor || 'var(--charcoal)'};">
+                        <span class="scheme-badge">${scheme.highlight || 'BONUS'}</span>
+                        <div class="scheme-tagline">${scheme.tagline || 'Special Plan'}</div>
+                        <h3 class="scheme-name">${scheme.name}</h3>
+                    </div>
+                    <div class="scheme-body">
+                        <p class="scheme-description">${scheme.description}</p>
+                        <ul class="scheme-bullets">
+                            ${bulletsHtml}
+                        </ul>
+                        <a href="https://wa.me/918390907528?text=Hello%20Baban%20Digwade%20Jewellers,%20I%20am%20interested%20in%20joining%20the%20${encodeURIComponent(scheme.name)}%20scheme." target="_blank" class="btn btn-maroon" style="width: 100%;">
+                            <i class="fab fa-whatsapp"></i> ${scheme.btnLabel || 'Join Scheme'}
+                        </a>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Live Firebase Schemes Listener
+        onValue(ref(db, 'settings/schemes'), (snapshot) => {
+            if (snapshot.exists()) {
+                const firebaseSchemes = Object.values(snapshot.val());
+                renderSchemesList(firebaseSchemes);
+            } else {
+                renderSchemesList(window.schemesList || []);
+            }
+        });
+
+        // Initial render fallback
+        window.addEventListener('load', () => {
+            renderSchemesList(window.schemesList || []);
+        });
+
+        // Calculator Logic
+        const range = document.getElementById('monthly-range');
+        const displayInstallment = document.getElementById('display-installment');
+        const displayTotal = document.getElementById('display-total');
+        const displayPaid = document.getElementById('display-paid');
+        const displayBonus = document.getElementById('display-bonus');
+
+        function updateCalculator() {
+            if (!range) return;
+            const monthly = parseInt(range.value, 10);
+            const paid = monthly * 11;
+            const bonus = monthly;
+            const total = paid + bonus;
+
+            displayInstallment.textContent = `₹${monthly.toLocaleString()}`;
+            displayPaid.textContent = `₹${paid.toLocaleString()}`;
+            displayBonus.textContent = `₹${bonus.toLocaleString()} FREE`;
+            displayTotal.textContent = `₹${total.toLocaleString()}`;
+        }
+
+        if (range) {
+            range.addEventListener('input', updateCalculator);
+            updateCalculator();
+        }
+
+        window.joinCalculatedScheme = function() {
+            const monthly = range ? range.value : '5000';
+            const text = encodeURIComponent(`Hello Baban Digwade Jewellers, I would like to enroll in the 11+1 Bonus Plan with monthly installment of ₹${parseInt(monthly).toLocaleString()}. Please share details for registration.`);
+            window.open(`https://wa.me/918390907528?text=${text}`, '_blank');
+        };
+
+        // Accordion Logic
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        // Rate Popup Logic
+        const rateBtn = document.getElementById('home-rate-btn');
+        const ratePopup = document.getElementById('home-rate-popup');
+
+        if (rateBtn && ratePopup) {
+            function updatePopupRates() {
+                const prices = window.prices;
+                if (prices) {
+                    if (prices.gold18k) document.getElementById('popup-gold-18k').textContent = `₹${(prices.gold18k / 10).toLocaleString()}`;
+                    if (prices.gold20k) document.getElementById('popup-gold-20k').textContent = `₹${(prices.gold20k / 10).toLocaleString()}`;
+                    document.getElementById('popup-gold-22k').textContent = `₹${(prices.gold22k / 10).toLocaleString()}`;
+                    document.getElementById('popup-gold-24k').textContent = `₹${(prices.gold24k / 10).toLocaleString()}`;
+                    document.getElementById('popup-silver').textContent = `₹${prices.silver.toLocaleString()}`;
+                    document.getElementById('popup-last-update').textContent = `Updated: ${prices.lastUpdate}`;
+                }
+            }
+
+            rateBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (ratePopup.style.display === 'none' || ratePopup.style.display === '') {
+                    ratePopup.style.display = 'block';
+                    updatePopupRates();
+                } else {
+                    ratePopup.style.display = 'none';
+                }
+            });
+
+            window.addEventListener('ratesUpdated', updatePopupRates);
+
+            document.addEventListener('click', (e) => {
+                if (!rateBtn.contains(e.target) && !ratePopup.contains(e.target)) {
+                    ratePopup.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
