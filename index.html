@@ -1,0 +1,574 @@
+\
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BABAN DIGWADE JEWELLERS PATTAN KODOLI | Timeless Elegance</title>
+    <meta name="description"
+        content="Welcome to Baban Digwade Jewellers Pattan Kodoli (bdjewels.co.in). Celebrating every milestone with timeless craftsmanship and pure artistry in gold, silver, and diamonds since 1983.">
+    <meta name="keywords"
+        content="Baban Digwade Jewellers, bdjewels.co.in, Pattan Kodoli jewellery, gold, silver, diamonds, ornaments, custom jewellery">
+    <link rel="canonical" href="https://bdjewels.co.in/">
+    <meta property="og:title" content="Baban Digwade Jewellers Pattan Kodoli">
+    <meta property="og:description"
+        content="Discover our timeless craftsmanship and pure artistry in gold and silver jewellery at bdjewels.co.in.">
+    <meta property="og:url" content="https://bdjewels.co.in/">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/BDJ.png">
+    <link rel="apple-touch-icon" href="images/BDJ.png">
+    <meta property="og:image" content="images/BDJ.png">
+    <meta name="twitter:image" content="images/BDJ.png">
+
+    <!-- Schema.org for Google Search Logo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://bdjewels.co.in/",
+      "logo": "https://bdjewels.co.in/images/BDJ.png"
+    }
+    </script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Owl Carousel CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+        @media (max-width: 480px) {
+            #home-rate-popup {
+                right: auto !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+            }
+        }
+
+        /* Map Section Styles */
+        .map-section {
+            padding: 5rem 5%;
+            background: #fff;
+            text-align: center;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #eee;
+        }
+
+        .map-info {
+            margin-bottom: 2rem;
+        }
+
+        .map-info h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--maroon);
+            margin-bottom: 1rem;
+        }
+
+        .map-info p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .directions-btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 2px;
+            transition: var(--transition);
+        }
+
+        .directions-btn:hover {
+            color: var(--maroon);
+            border-color: var(--maroon);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <div class="loader">
+            <img src="images/BDJ.png" alt="BDJ Logo" class="preloader-logo">
+        </div>
+    </div>
+
+    <header>
+        <div class="top-bar">
+            <a href="index.html" class="logo">
+                <img src="images/BDJ.png" alt="Baban Digwade Jewellers Logo">
+                <span class="logo-text">
+                    BABAN DIGWADE JEWELLERS <span
+                        style="font-size: 0.7em; text-transform: lowercase; font-weight: 400; margin-left: 5px;">pattan
+                        kodoli.</span>
+                    <small style="display:block; font-size:0.6em; letter-spacing:1px; font-weight:400;">be ornated |
+                        since 1983</small>
+                </span>
+            </a>
+            <div class="top-actions">
+                <a href="https://wa.me/918390907528" target="_blank" class="phone-link"><i class="fab fa-whatsapp"></i>
+                    8390907528</a>
+                <div style="position: relative; display: inline-block;">
+                    <a href="#" class="gold-rate-btn" id="home-rate-btn"><i class="fas fa-chart-line"></i> Rate</a>
+                    <div id="home-rate-popup" class="premium-rate-popup"
+                        style="display: none; position: absolute; top: calc(100% + 15px); right: 0; z-index: 1000; cursor: default;">
+                        <h4 class="rate-popup-header">Today's Rates</h4>
+
+                        <div class="rate-item">
+                            <span class="rate-label">18K Gold</span>
+                            <strong class="rate-value" id="popup-gold-18k">...</strong>
+                        </div>
+                        <div class="rate-item">
+                            <span class="rate-label">20K Gold</span>
+                            <strong class="rate-value" id="popup-gold-20k">...</strong>
+                        </div>
+                        <div class="rate-item">
+                            <span class="rate-label">22K Gold</span>
+                            <strong class="rate-value" id="popup-gold-22k">...</strong>
+                        </div>
+                        <div class="rate-item">
+                            <span class="rate-label">24K Gold</span>
+                            <strong class="rate-value" id="popup-gold-24k">...</strong>
+                        </div>
+                        <div class="rate-item">
+                            <span class="rate-label">Silver</span>
+                            <strong class="rate-value" id="popup-silver">...</strong>
+                        </div>
+
+                        <div class="rate-update-time" id="popup-last-update">...</div>
+
+                        <div class="rate-popup-footer">
+                            T & C applied. (Rates excluding GST.)
+                        </div>
+
+                        <a href="rate.html" class="rate-view-details">View full details <i class="fas fa-chevron-right"
+                                style="font-size: 0.7rem;"></i></a>
+                    </div>
+                </div>
+                <a href="auth.html" id="header-user-btn"><i class="fas fa-user-circle"></i> <span
+                        id="header-user-label">Account</span></a>
+            </div>
+        </div>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="category.html?type=collections">Collections</a></li>
+                <li><a href="category.html?type=gold">Gold</a></li>
+                <li><a href="category.html?type=silver">Silver</a></li>
+                <li><a href="schemes.html">Monthly Schemes</a></li>
+                <li><a href="category.html?type=gifting">Gifting Articles</a></li>
+            </ul>
+        </nav>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const mobileBtn = document.getElementById('mobile-menu-btn');
+                const nav = document.querySelector('nav');
+                if (mobileBtn && nav) {
+                    mobileBtn.addEventListener('click', () => {
+                        nav.classList.toggle('nav-active');
+                    });
+                }
+
+                // Check active user session
+                const userSession = localStorage.getItem('bdj_user_session');
+                const userLabel = document.getElementById('header-user-label');
+                if (userSession && userLabel) {
+                    userLabel.textContent = 'My Account';
+                }
+            });
+        </script>
+    </header>
+
+    <main>
+        <!-- Hero Carousel -->
+        <section class="hero-carousel-wrapper">
+            <div class="owl-carousel owl-theme" id="hero-carousel">
+                <div class="item hero-slide"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=2070');">
+                    <div class="hero-content">
+                        <h1>Heritage of Gold</h1>
+                        <p>Celebrating every milestone with timeless craftsmanship and pure artistry since 1983.</p>
+                        <a href="category.html?type=collections" class="btn">Explore Collections</a>
+                    </div>
+                </div>
+
+                <div class="item hero-slide"
+                    style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&q=80&w=2070');">
+                    <div class="hero-content">
+                        <span
+                            style="background: var(--gold); color: var(--charcoal); padding: 5px 20px; border-radius: 50px; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block; letter-spacing: 1px;">Special
+                            Promotion</span>
+                        <h1 style="color: var(--gold);">Zero Making Charges</h1>
+                        <p>On all Heritage Gold Necklaces this wedding season. Own your dream jewellery with absolute
+                            transparency.</p>
+                        <a href="category.html?type=gold&subCategory=neckless" class="btn">Explore Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Featured Collections Section -->
+        <section class="section" id="collections-section">
+            <h2 class="section-title">Our Featured Collections</h2>
+            <p class="section-subtitle">Discover handcrafted artistry in pure gold and silver, celebrating tradition and
+                modern grace.</p>
+            <div class="collections-grid" id="home-collections-dynamic-grid">
+                <div class="collection-card" onclick="window.location.href='category.html?type=gold&subCategory=rings'">
+                    <img src="images/gold/P1.webp" alt="Rings Collection">
+                    <div class="collection-overlay">
+                        <h3>Rings Collection</h3>
+                        <p>Find your perfect gold ring</p>
+                    </div>
+                </div>
+                <div class="collection-card"
+                    onclick="window.location.href='category.html?type=collections&collection=Signature'">
+                    <img src="images/gold/P2.webp" alt="Signature Collection">
+                    <div class="collection-overlay">
+                        <h3>Signature Collection</h3>
+                        <p>Exquisite designs unique to you</p>
+                    </div>
+                </div>
+                <div class="collection-card"
+                    onclick="window.location.href='category.html?type=gold&subCategory=bangales'">
+                    <img src="images/gold/P3.webp" alt="Wedding Sets">
+                    <div class="collection-overlay">
+                        <h3>Wedding Sets</h3>
+                        <p>Exquisite suites for the perfect bride</p>
+                    </div>
+                </div>
+                <div class="collection-card"
+                    onclick="window.location.href='category.html?type=gold&subCategory=neckless'">
+                    <img src="images/gold/T1.webp" alt="Heritage Collection">
+                    <div class="collection-overlay">
+                        <h3>Heritage Collection</h3>
+                        <p>Timeless gold necklaces</p>
+                    </div>
+                </div>
+                <div class="collection-card"
+                    onclick="window.location.href='category.html?type=gold&subCategory=earrings'">
+                    <img src="images/gold/T2.webp" alt="Antique Collection">
+                    <div class="collection-overlay">
+                        <h3>Antique Collection</h3>
+                        <p>All types of gold earrings</p>
+                    </div>
+                </div>
+                <div class="collection-card"
+                    onclick="window.location.href='category.html?type=gold&subCategory=mangalsutr'">
+                    <img src="images/gold/T3.webp" alt="Mangalsutra Collection">
+                    <div class="collection-overlay">
+                        <h3>Mangalsutra Collection</h3>
+                        <p>The sacred bond of love and commitment</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Trending & New Arrivals Section -->
+        <section class="section" id="home-trending-section" style="background: #faf8f5;">
+            <h2 class="section-title">Trending Masterpieces</h2>
+            <p class="section-subtitle">Handpicked jewels freshly crafted by master artisans for this season.</p>
+            <div class="product-grid" id="home-trending-grid" style="max-width: 1300px; margin: 0 auto;">
+                <!-- Populated dynamically via JavaScript / Firebase -->
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="category.html?type=gold" class="btn"><i class="fas fa-gem"></i> View Full Jewellery Catalog</a>
+            </div>
+        </section>
+
+        <!-- Dynamic Monthly Gold Scheme Spotlight Banner -->
+        <section class="section" style="padding: 2rem 5% 5rem;">
+            <div class="home-scheme-spotlight">
+                <div class="home-scheme-content">
+                    <span class="home-scheme-pill"><i class="fas fa-piggy-bank"></i> Dhanvarsha Bachat Yojana</span>
+                    <h2>Save in Gold with 11+1 Bonus Plan</h2>
+                    <p>Pay 11 monthly installments and <strong>Baban Digwade Jewellers pays the 12th installment
+                            completely FREE!</strong> Enjoy zero making charges and maximum festival bonuses.</p>
+                    <div class="home-scheme-features">
+                        <span class="home-scheme-pill"><i class="fas fa-check-circle"></i> 100% Free Bonus Month</span>
+                        <span class="home-scheme-pill"><i class="fas fa-check-circle"></i> Zero Making Charges</span>
+                        <span class="home-scheme-pill"><i class="fas fa-check-circle"></i> Starts from ₹1,000/mo</span>
+                    </div>
+                    <a href="schemes.html" class="btn"
+                        style="background: var(--gold); color: var(--charcoal); font-weight: 700;">
+                        Calculate Scheme Returns <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="home-scheme-card-preview">
+                    <span
+                        style="color: var(--gold-light); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Sample
+                        Plan</span>
+                    <div class="calc-sample">₹3,000 / mo</div>
+                    <p style="font-size: 0.9rem; color: #ddd; margin-bottom: 1rem;">
+                        You Pay (11 Mo): <strong>₹33,000</strong><br>
+                        BDJ Bonus: <strong style="color: #2ecc71;">+ ₹3,000 FREE</strong><br>
+                        Total Jewellery: <strong style="color: var(--gold);">₹36,000</strong>
+                    </p>
+                    <a href="schemes.html"
+                        style="color: var(--gold-light); font-size: 0.85rem; text-decoration: underline;">Open
+                        Interactive Calculator &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legacy Section -->
+        <section class="section" style="background: var(--white);">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <h2 class="section-title">The Baban Digwade Legacy</h2>
+                <p>Founded in 1983, we have been a symbol of trust and purity for generations. Our artisans blend
+                    ancient techniques with modern design to create pieces that aren't just jewelry, but embodiments of
+                    your precious moments.</p>
+                <br>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <a href="category.html?type=collections" class="btn"
+                        style="background: var(--maroon); color: #fff;">Explore Collections</a>
+                    <a href="rate.html" class="btn"
+                        style="background: transparent; color: var(--maroon); border: 2px solid var(--maroon);">Check
+                        Today's Rate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Map & Showroom Section -->
+        <section class="map-section">
+            <div class="map-info">
+                <h2 class="section-title">Visit Our Showroom</h2>
+                <p>Experience our heritage and craftsmanship in person.</p>
+                <p><strong>Address:</strong> Mandpe Galli Bazarpeth Line, Pattan Kodoli</p>
+                <a href="https://www.google.com/maps/dir//Baban+Digwade+Jewellers+Pattan+Kodoli" target="_blank"
+                    class="directions-btn"><i class="fas fa-directions"></i> Get Directions</a>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps?q=Baban+Digwade+Jewellers+Pattan+Kodoli&output=embed"
+                    width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </section>
+    </main>
+
+    <!-- Unified Footer with Connected Links -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rate.html">Today's Rates</a></li>
+                    <li><a href="schemes.html">Monthly Schemes</a></li>
+                    <li><a href="category.html?type=collections">Featured Collections</a></li>
+                    <li><a href="auth.html">My Account</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Jewellery Categories</h4>
+                <ul>
+                    <li><a href="category.html?type=gold">Gold Collection (916 BIS)</a></li>
+                    <li><a href="category.html?type=gold&subCategory=rings">Gold Rings</a></li>
+                    <li><a href="category.html?type=gold&subCategory=neckless">Necklaces & Sets</a></li>
+                    <li><a href="category.html?type=gold&subCategory=bangales">Bangles & Kadas</a></li>
+                    <li><a href="category.html?type=gold&subCategory=mangalsutr">Mangalsutras</a></li>
+                    <li><a href="category.html?type=silver">Silver Articles & Payal</a></li>
+                    <li><a href="category.html?type=gifting">Gifting Articles & Coins</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Showroom Contact</h4>
+                <p style="color: #ccc; font-size: 0.9rem; line-height: 1.6;">
+                    Mandpe Galli Bazarpeth Line,<br>
+                    Pattan Kodoli, Maharashtra<br>
+                    Email: babandigwade1983@gmail.com<br>
+                    Phone: <a href="https://wa.me/918390907528" target="_blank"
+                        style="color: #ccc; text-decoration: none;"><i class="fab fa-whatsapp"></i> +91
+                        8390907528</a><br>
+                    Timings: 10:00 AM – 8:30 PM (All 7 Days)
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Connect With Us</h4>
+                <p style="color: #bbb; font-size: 0.88rem; margin-bottom: 1rem;">Follow our latest gold & diamond
+                    showcases on social media.</p>
+                <div style="display: flex; gap: 1rem; font-size: 1.5rem;">
+                    <a href="https://www.instagram.com/digwade.jewellers?igsh=MXc2ZnU5Mml1ZWZrZw==" target="_blank"
+                        title="Instagram"><i class="fab fa-instagram" style="color: #E4405F;"></i></a>
+                    <a href="https://wa.me/918390907528" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"
+                            style="color: #25D366;"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 BABAN DIGWADE JEWELLERS
+                <span style="font-size: 0.7em; display: block; letter-spacing: 1px;">Be Ornated | since 1983</span>
+                <span
+                    style="font-size: 0.85rem; letter-spacing: 2px; font-weight: 400; display: block; opacity: 0.85; font-family: var(--font-sans);">PATTAN
+                    KODOLI</span>. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script type="module" src="data.js"></script>
+    <script type="module" src="rate-sync.js"></script>
+    <script type="module" src="product-sync.js"></script>
+    <script src="chatbot.js"></script>
+    <!-- jQuery for Owl Carousel -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script type="module">
+        // Helper to build the promo slide HTML
+        function buildPromoSlide(promoBanner) {
+            if (!promoBanner) return null;
+            const badgeText = promoBanner.isFestival ? 'Festive Offer' : 'Special Promotion';
+            const badgeColor = promoBanner.isFestival ? 'var(--maroon)' : 'var(--gold)';
+            const badgeTextColor = promoBanner.isFestival ? 'white' : 'var(--charcoal)';
+            return `
+                <div class="item hero-slide promo-banner-slide" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('${promoBanner.img}');">
+                    <div class="hero-content">
+                        <span style="background: ${badgeColor}; color: ${badgeTextColor}; padding: 5px 20px; border-radius: 50px; font-weight: 700; text-transform: uppercase; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block; letter-spacing: 1px;">${badgeText}</span>
+                        <h1 style="color: var(--gold);">${promoBanner.title}</h1>
+                        <p>${promoBanner.subtitle}</p>
+                        ${promoBanner.btnText ? `<a href="${promoBanner.btnLink}" class="btn">${promoBanner.btnText}</a>` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        $(document).ready(function () {
+            // Initialize Owl Carousel with built-in slides first
+            const owl = $("#hero-carousel").owlCarousel({
+                items: 1,
+                loop: true,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                animateOut: 'fadeOut',
+                nav: false,
+                dots: true
+            });
+
+            // Listen for Firebase hero banner — visible on ALL devices/browsers
+            window.addEventListener('heroBannerReady', (e) => {
+                const promoBanner = e.detail;
+                if (!promoBanner) return;
+
+                const slideHtml = buildPromoSlide(promoBanner);
+                if (!slideHtml) return;
+
+                // Add the promo slide as the first item in the carousel
+                owl.trigger('add.owl.carousel', [$(slideHtml), 0]);
+                owl.trigger('refresh.owl.carousel');
+                owl.trigger('to.owl.carousel', [0, 400]);
+            });
+        });
+
+        // Dynamic Home Page Products & Collections Renderer
+        function renderHomeDynamicContent() {
+            const products = window.products || {};
+            const trendingGrid = document.getElementById('home-trending-grid');
+            if (!trendingGrid) return;
+
+            // Collect top featured products
+            let items = [];
+            if (Array.isArray(products.gold)) items = [...items, ...products.gold];
+            if (Array.isArray(products.silver)) items = [...items, ...products.silver.slice(0, 2)];
+            if (Array.isArray(products.new)) items = [...products.new, ...items];
+
+            // Only show admin-added products if available, otherwise display items list
+            const customItems = items.filter(p => p._isCustom === true);
+            const displayItems = customItems.length > 0 ? customItems : items;
+
+            if (displayItems.length > 0) {
+                const topItems = displayItems.slice(0, 8);
+                trendingGrid.innerHTML = topItems.map(item => {
+                    const purity = item.details?.purity ? item.details.purity : '22KT';
+                    const weightStr = item.weight ? item.weight : '';
+                    const isOutOfStock = item.stockStatus === 'out-of-stock';
+                    const badge = isOutOfStock ? `<div class="out-of-stock-badge">Out of Stock</div>` : '';
+                    const cardClass = isOutOfStock ? 'product-card card-out-of-stock' : 'product-card';
+
+                    return `
+                        <div class="${cardClass}" onclick="window.location.href='product-detail.html?code=${encodeURIComponent(item.code)}'">
+                            ${badge}
+                            <div class="product-image">
+                                <img src="${item.img}" alt="${item.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1599643477877-530eb83abc8e?auto=format&fit=crop&q=80&w=600'">
+                            </div>
+                            <div class="product-info">
+                                <h3>${item.name}</h3>
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0.5rem;">
+                                    <span style="font-size: 0.82rem; color: var(--maroon); font-weight: 600;">${purity}</span>
+                                    <span class="product-price" style="font-size: 0.88rem;">${weightStr}</span>
+                                </div>
+                                <span style="font-size: 0.72rem; color: #888; display: block; margin-top: 4px;">Code: ${item.code}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Rate Popup Logic
+            const rateBtn = document.getElementById('home-rate-btn');
+            const ratePopup = document.getElementById('home-rate-popup');
+
+            if (rateBtn && ratePopup) {
+                function updatePopupRates() {
+                    const prices = window.prices;
+                    if (prices) {
+                        if (prices.gold18k) document.getElementById('popup-gold-18k').textContent = `₹${(prices.gold18k / 10).toLocaleString()}`;
+                        if (prices.gold20k) document.getElementById('popup-gold-20k').textContent = `₹${(prices.gold20k / 10).toLocaleString()}`;
+                        if (prices.gold22k) document.getElementById('popup-gold-22k').textContent = `₹${(prices.gold22k / 10).toLocaleString()}`;
+                        if (prices.gold24k) document.getElementById('popup-gold-24k').textContent = `₹${(prices.gold24k / 10).toLocaleString()}`;
+                        if (prices.silver) document.getElementById('popup-silver').textContent = `₹${prices.silver.toLocaleString()}`;
+                        if (prices.lastUpdate) document.getElementById('popup-last-update').textContent = `Updated: ${prices.lastUpdate}`;
+                    }
+                }
+
+                rateBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (ratePopup.style.display === 'none' || ratePopup.style.display === '') {
+                        ratePopup.style.display = 'block';
+                        updatePopupRates();
+                    } else {
+                        ratePopup.style.display = 'none';
+                    }
+                });
+
+                // Listen for real-time updates
+                window.addEventListener('ratesUpdated', updatePopupRates);
+
+                // Close popup when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!rateBtn.contains(e.target) && !ratePopup.contains(e.target)) {
+                        ratePopup.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initial render and listen for Firebase products
+            renderHomeDynamicContent();
+            window.addEventListener('productsReady', renderHomeDynamicContent);
+        });
+    </script>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918390907528" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+</body>
+
+</html>
