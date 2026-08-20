@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        // Auth Guard
+        const adminSession = localStorage.getItem('bdj_admin_session');
+        if (!adminSession) {
+            window.location.href = 'auth.html?redirect=admin';
+        }
+    </script>
+    <title>Admin Panel | BABAN DIGWADE JEWELLERS PATTAN KODOLI</title>
+    <meta name="description"
+        content="Admin Panel for Baban Digwade Jewellers Pattan Kodoli (bdjewels.co.in). Manage inventory, rates, and schemes.">
+    <meta name="keywords" content="Baban Digwade Jewellers, bdjewels.co.in, Admin Panel, Pattan Kodoli">
+    <link rel="canonical" href="https://bdjewels.co.in/admin.html">
+    <meta property="og:title" content="Admin Panel | Baban Digwade Jewellers Pattan Kodoli">
+    <meta property="og:description" content="Admin Panel for bdjewels.co.in">
+    <meta property="og:url" content="https://bdjewels.co.in/admin.html">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/BDJ.png">
+    <link rel="apple-touch-icon" href="images/BDJ.png">
+    <meta property="og:image" content="images/BDJ.png">
+    <meta name="twitter:image" content="images/BDJ.png">
+
+    <!-- Schema.org for Google Search Logo -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "url": "https://bdjewels.co.in/",
+      "logo": "https://bdjewels.co.in/images/BDJ.png"
+    }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ═══════════════════════════════════════════
+           ADMIN DESIGN SYSTEM - PREMIUM OVERHAUL
+        ═══════════════════════════════════════════ */
+        :root {
+            --sb-w: 270px;
+            --topbar-h: 68px;
+            --sb-bg: #0d1117;
+            --sb-border: rgba(212,175,55,0.12);
+            --page-bg: #f0f2f7;
+            --card-bg: #ffffff;
+            --card-r: 14px;
+            --card-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            --accent: #d4af37;
+            --accent-dk: #aa820a;
+            --danger: #e53e3e;
+            --success: #27ae60;
+            --info: #2980b9;
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --ease: all 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font) !important;
+            background: var(--page-bg);
+            color: #1a1a2e;
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ─── SIDEBAR ─────────────────────────────── */
+        .admin-sidebar {
+            width: var(--sb-w) !important;
+            background: var(--sb-bg) !important;
+            position: fixed !important;
+            left: 0; top: 0; bottom: 0;
+            display: flex !important;
+            flex-direction: column !important;
+            z-index: 1000;
+            border-right: 1px solid var(--sb-border) !important;
+            border-top: none !important;
+            border-bottom: none !important;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 0 !important;
+        }
+        .admin-sidebar::-webkit-scrollbar { width: 3px; }
+        .admin-sidebar::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.25); border-radius: 2px; }
+
+        /* Brand */
+        .sb-brand {
+            padding: 1.4rem 1.4rem 1.2rem !important;
+            border-bottom: 1px solid var(--sb-border);
+            display: flex !important;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none !important;
+            background: transparent !important;
+        }
+        .sb-brand-icon {
+            width: 42px; height: 42px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.18), rgba(212,175,55,0.04));
+            border: 1px solid rgba(212,175,55,0.25);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .sb-brand-icon img { width: 26px; filter: brightness(0) invert(1); }
+        .sb-brand-name {
+            font-family: 'Playfair Display', serif !important;
+            font-size: 0.88rem; font-weight: 700;
+            color: var(--accent) !important; line-height: 1.2;
+        }
+        .sb-brand-sub {
+            font-size: 0.62rem; color: rgba(255,255,255,0.3) !important;
+            text-transform: uppercase; letter-spacing: 1.2px; margin-top: 2px;
+        }
+
+        /* Nav sections */
+        .sb-label {
+            padding: 1.3rem 1.5rem 0.45rem;
+            font-size: 0.6rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 1.5px;
+            color: rgba(255,255,255,0.18) !important;
+            margin: 0 !important;
+        }
+
+        /* ── Override global nav from style.css ── */
+        .admin-sidebar .admin-nav {
+            flex: 1;
+            background: transparent !important;
+            padding: 0 !important;
+            border-top: none !important;
+            border: none !important;
+        }
+        .admin-sidebar .admin-nav ul {
+            list-style: none !important;
+            padding: 0 0.7rem !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
+            align-items: stretch !important;
+            gap: 0 !important;
+            margin: 0 !important;
+        }
+        .admin-sidebar .admin-nav ul li {
+            margin-bottom: 2px !important;
+            width: 100% !important;
+        }
+        .admin-sidebar .admin-nav ul li a {
+            display: flex !important;
+            align-items: center !important;
+            gap: 11px !important;
+            padding: 0.7rem 0.9rem !important;
+            border-radius: 10px !important;
+            color: rgba(255,255,255,0.55) !important;
+            text-decoration: none !important;
+            font-size: 0.85rem !important;
+            font-weight: 500 !important;
+            font-family: var(--font) !important;
+            text-transform: none !important;
+            letter-spacing: normal !important;
+            transition: var(--ease);
+            position: relative;
+            background: transparent !important;
+        }
+        /* Kill the gold underline from global nav */
+        .admin-sidebar .admin-nav ul li a::after {
+            display: none !important;
+            content: none !important;
+        }
+        .admin-sidebar .admin-nav ul li a .ni {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: rgba(255,255,255,0.04);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.82rem; flex-shrink: 0; transition: var(--ease);
+        }
+        .admin-sidebar .admin-nav ul li a:hover {
+            background: rgba(255,255,255,0.06) !important;
+            color: #fff !important;
+        }
+        .admin-sidebar .admin-nav ul li a:hover .ni {
+            background: rgba(212,175,55,0.12); color: var(--accent);
+        }
+        .admin-sidebar .admin-nav ul li a.active {
+            background: rgba(212,175,55,0.1) !important;
+            color: #fff !important;
+        }
+        .admin-sidebar .admin-nav ul li a.active .ni {
+            background: rgba(212,175,55,0.18); color: var(--accent);
+        }
+        .admin-sidebar .admin-nav ul li a.active::before {
+            content: '' !important; display: block !important;
+            position: absolute; left: 0; top: 50%;
+            transform: translateY(-50%);
+            width: 3px; height: 55%;
+            background: var(--accent); border-radius: 0 3px 3px 0;
+        }
+
+        /* Logout */
+        .sb-logout {
+            padding: 0.8rem 1.2rem;
+            border-top: 1px solid var(--sb-border);
+        }
+        .sb-logout a {
+            display: flex; align-items: center; gap: 10px;
+            padding: 0.7rem 1rem; border-radius: 10px;
+            background: rgba(229,62,62,0.08);
+            border: 1px solid rgba(229,62,62,0.15);
+            color: #fc8181; font-size: 0.85rem; font-weight: 600;
+            text-decoration: none; transition: var(--ease);
+        }
+        .sb-logout a:hover {
+            background: rgba(229,62,62,0.18); color: #fff;
+            border-color: rgba(229,62,62,0.4);
+        }
+
+        /* ─── MAIN ────────────────────────────────── */
+        .admin-main {
+            margin-left: var(--sb-w);
+            flex: 1; min-width: 0;
+            display: flex; flex-direction: column;
+        }
+
+        /* Topbar */
+        .admin-topbar {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(240,242,247,0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            height: var(--topbar-h);
+            display: flex; align-items: center;
+            justify-content: space-between;
+            padding: 0 2.5rem; gap: 1rem;
+        }
+        .tb-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.35rem; color: var(--maroon, #800000);
+        }
+        .tb-date { font-size: 0.78rem; color: #999; margin-top: 2px; }
+        .tb-right { display: flex; align-items: center; gap: 0.9rem; }
+        .tb-badge {
+            display: flex; align-items: center; gap: 10px;
+            background: #fff; border: 1px solid #eee;
+            border-radius: 50px; padding: 0.4rem 1rem 0.4rem 0.5rem;
+        }
+        .tb-avatar {
+            width: 30px; height: 30px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dk));
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 0.7rem;
+        }
+        .tb-name { font-size: 0.82rem; font-weight: 600; color: #333; }
+
+        .btn-logout-top {
+            display: flex; align-items: center; gap: 7px;
+            background: var(--danger); color: #fff;
+            border: none; border-radius: 8px;
+            padding: 0.48rem 1rem; font-size: 0.8rem;
+            font-weight: 600; cursor: pointer;
+            font-family: var(--font); transition: var(--ease);
+        }
+        .btn-logout-top:hover { background: #c53030; transform: translateY(-1px); }
+
+        /* Body */
+        .admin-body { padding: 1.8rem 2.5rem; flex: 1; }
+
+        /* ─── STATS ───────────────────────────────── */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 1rem; margin-bottom: 1.8rem;
+        }
+        .s-card {
+            background: var(--card-bg);
+            border-radius: var(--card-r);
+            box-shadow: var(--card-shadow);
+            padding: 1.3rem 1.4rem;
+            display: flex; align-items: center; gap: 1rem;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: var(--ease); position: relative;
+            overflow: hidden;
+        }
+        .s-card::after {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+        }
+        .s-card.c1::after { background: linear-gradient(90deg, #d4af37, #f5ecc7); }
+        .s-card.c2::after { background: linear-gradient(90deg, #800000, #a31c34); }
+        .s-card.c3::after { background: linear-gradient(90deg, #2980b9, #6dd5fa); }
+        .s-card.c4::after { background: linear-gradient(90deg, #27ae60, #6fcf97); }
+
+        .s-card:hover { transform: translateY(-3px); box-shadow: 0 6px 28px rgba(0,0,0,0.09); }
+
+        .s-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.05rem; flex-shrink: 0;
+        }
+        .s-card.c1 .s-icon { background: rgba(212,175,55,0.1); color: #aa820a; }
+        .s-card.c2 .s-icon { background: rgba(128,0,0,0.07); color: #800000; }
+        .s-card.c3 .s-icon { background: rgba(41,128,185,0.08); color: #2980b9; }
+        .s-card.c4 .s-icon { background: rgba(39,174,96,0.08); color: #27ae60; }
+
+        .s-label {
+            font-size: 0.68rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.8px;
+            color: #aaa; margin-bottom: 3px;
+        }
+        .s-val { font-size: 1.4rem; font-weight: 800; color: #1a1a2e; line-height: 1; }
+        .s-sub { font-size: 0.68rem; color: #bbb; margin-top: 3px; }
+
+        /* ─── RATE ALERT ──────────────────────────── */
+        #rate-reminder-alert {
+            display: none;
+            background: linear-gradient(135deg, #fff5f5, #fff);
+            border: 1px solid rgba(229,62,62,0.15);
+            border-left: 5px solid var(--danger);
+            padding: 1.3rem 1.6rem;
+            border-radius: var(--card-r);
+            box-shadow: 0 3px 16px rgba(229,62,62,0.06);
+            margin-bottom: 1.8rem;
+            align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 1rem;
+        }
+        .alert-dot {
+            width: 42px; height: 42px; border-radius: 50%;
+            background: var(--danger); color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; flex-shrink: 0;
+        }
+
+        /* ─── CARDS ────────────────────────────────── */
+        .admin-card {
+            background: var(--card-bg);
+            border-radius: var(--card-r);
+            box-shadow: var(--card-shadow);
+            margin-bottom: 1.8rem;
+            border: 1px solid rgba(0,0,0,0.03);
+            overflow: hidden;
+            animation: cardIn 0.4s ease both;
+        }
+        .admin-card:nth-child(1) { animation-delay: 0.04s; }
+        .admin-card:nth-child(2) { animation-delay: 0.08s; }
+        .admin-card:nth-child(3) { animation-delay: 0.12s; }
+        .admin-card:nth-child(4) { animation-delay: 0.16s; }
+        .admin-card:nth-child(5) { animation-delay: 0.2s; }
+        .admin-card:nth-child(6) { animation-delay: 0.24s; }
+        .admin-card:nth-child(7) { animation-delay: 0.28s; }
+
+        @keyframes cardIn {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .c-head {
+            padding: 1.3rem 1.8rem;
+            border-bottom: 1px solid #f3f3f3;
+            display: flex; align-items: center; gap: 0.9rem;
+        }
+        .c-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(212,175,55,0.12), rgba(212,175,55,0.03));
+            border: 1px solid rgba(212,175,55,0.18);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-dk); font-size: 0.95rem;
+        }
+        .c-head h2 {
+            font-family: var(--font) !important;
+            font-size: 1rem; font-weight: 700;
+            color: #1a1a2e; margin: 0; border: none; padding: 0;
+        }
+        .c-head p { font-size: 0.75rem; color: #aaa; margin-top: 1px; }
+        .c-body { padding: 1.8rem; }
+
+        /* ─── FORMS ────────────────────────────────── */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.1rem;
+        }
+        .form-group { margin-bottom: 0.9rem; }
+        .form-group label {
+            display: block; margin-bottom: 0.4rem;
+            font-weight: 600; font-size: 0.8rem;
+            color: #555; letter-spacing: 0.2px;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%; padding: 0.7rem 0.9rem;
+            border: 1.5px solid #e6e6e6; border-radius: 10px;
+            font-family: var(--font); font-size: 0.86rem;
+            color: #333; background: #fafafa;
+            transition: var(--ease); outline: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent); background: #fff;
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.08);
+        }
+
+        /* ─── BUTTONS ─────────────────────────────── */
+        .admin-btn {
+            display: inline-flex; align-items: center;
+            justify-content: center; gap: 7px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dk));
+            color: #fff; border: none;
+            padding: 0.7rem 1.5rem; border-radius: 10px;
+            cursor: pointer; font-weight: 700;
+            font-size: 0.85rem; font-family: var(--font);
+            transition: var(--ease); text-decoration: none;
+            letter-spacing: 0.2px;
+        }
+        .admin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 18px rgba(212,175,55,0.3);
+            color: #fff;
+        }
+        .admin-btn:active { transform: translateY(0); }
+
+        .admin-btn.b-danger { background: linear-gradient(135deg, #e53e3e, #c53030); }
+        .admin-btn.b-danger:hover { box-shadow: 0 5px 18px rgba(229,62,62,0.3); }
+        .admin-btn.b-success { background: linear-gradient(135deg, #27ae60, #1e8449); }
+        .admin-btn.b-success:hover { box-shadow: 0 5px 18px rgba(39,174,96,0.3); }
+        .admin-btn.b-info { background: linear-gradient(135deg, #2980b9, #1a6fa0); }
+        .admin-btn.b-info:hover { box-shadow: 0 5px 18px rgba(41,128,185,0.3); }
+        .admin-btn.b-dark { background: linear-gradient(135deg, #2d3436, #1a1a2e); }
+        .admin-btn.b-dark:hover { box-shadow: 0 5px 18px rgba(0,0,0,0.2); }
+
+        .btn-row {
+            display: flex; gap: 0.7rem;
+            flex-wrap: wrap; margin-top: 1rem;
+        }
+
+        /* ─── SUCCESS MSG ─────────────────────────── */
+        .success-msg {
+            display: none; margin-top: 0.9rem;
+            padding: 0.7rem 1rem; border-radius: 8px;
+            font-size: 0.82rem; font-weight: 600;
+            background: rgba(39,174,96,0.08);
+            color: var(--success);
+            border: 1px solid rgba(39,174,96,0.15);
+        }
+
+        /* ─── INVENTORY ───────────────────────────── */
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+            gap: 1.1rem;
+        }
+        .inv-card {
+            background: #fff; border: 1.5px solid #eee;
+            border-radius: 12px; padding: 0.9rem;
+            display: flex; flex-direction: column;
+            gap: 0.4rem; transition: var(--ease);
+        }
+        .inv-card:hover {
+            border-color: rgba(212,175,55,0.25);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+        }
+        .inv-card img {
+            width: 100%; height: 150px;
+            object-fit: cover; border-radius: 8px;
+        }
+        .inv-actions { display: flex; gap: 0.4rem; margin-top: auto; }
+
+        .inv-btn {
+            flex: 1; padding: 0.45rem;
+            border: none; border-radius: 8px;
+            cursor: pointer; font-size: 0.78rem;
+            font-weight: 600; font-family: var(--font);
+            transition: var(--ease);
+            display: flex; align-items: center;
+            justify-content: center; gap: 4px;
+        }
+        .btn-toggle {
+            background: #ebf5fb; color: #2980b9;
+            border: 1px solid rgba(41,128,185,0.15);
+        }
+        .btn-toggle:hover { background: #d6eaf8; }
+        .btn-delete {
+            background: #fdf2f2; color: var(--danger);
+            border: 1px solid rgba(229,62,62,0.15);
+        }
+        .btn-delete:hover { background: #fce8e8; }
+
+        .status-badge {
+            align-self: flex-start;
+            font-size: 0.65rem; padding: 2px 9px;
+            border-radius: 20px; text-transform: uppercase;
+            font-weight: 700; letter-spacing: 0.4px;
+        }
+        .status-in { background: #e8f5e9; color: #2e7d32; }
+        .status-out { background: #fff3e0; color: #ef6c00; }
+
+        /* ─── INFO BOX ────────────────────────────── */
+        .info-tip {
+            background: linear-gradient(135deg, rgba(212,175,55,0.05), rgba(212,175,55,0.01));
+            border: 1px solid rgba(212,175,55,0.15);
+            border-left: 4px solid var(--accent);
+            padding: 0.9rem 1.1rem; border-radius: 0 10px 10px 0;
+            margin-bottom: 1.3rem; font-size: 0.82rem; color: #666;
+        }
+        .info-tip strong { color: var(--accent-dk); }
+
+        /* ─── SUB HEADING ─────────────────────────── */
+        .sub-head {
+            font-size: 0.9rem; font-weight: 700;
+            color: #1a1a2e; margin: 1.8rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex; align-items: center; gap: 7px;
+        }
+        .sub-head::before {
+            content: ''; width: 3px; height: 14px;
+            background: var(--accent); border-radius: 2px;
+        }
+
+        /* ─── DROP ZONE ───────────────────────────── */
+        .drop-zone {
+            max-width: 100%; height: 150px;
+            padding: 25px; display: flex;
+            align-items: center; justify-content: center;
+            text-align: center; font-family: var(--font);
+            font-weight: 500; font-size: 0.88rem;
+            cursor: pointer; color: #aaa;
+            border: 2px dashed rgba(212,175,55,0.35);
+            border-radius: 12px; transition: var(--ease);
+            background: #fafafa; margin-top: 0.5rem;
+        }
+        .drop-zone:hover {
+            border-color: var(--accent);
+            background: rgba(212,175,55,0.02);
+        }
+        .drop-zone--over {
+            border-style: solid;
+            border-color: var(--maroon, #800000);
+            background: rgba(212,175,55,0.03);
+        }
+        .drop-zone__input { display: none; }
+        .drop-zone__thumb {
+            width: 100%; height: 100%;
+            border-radius: 8px; overflow: hidden;
+            background-color: #eee;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+        }
+        .drop-zone__thumb::after {
+            content: attr(data-label);
+            position: absolute; bottom: 0; left: 0;
+            width: 100%; padding: 5px 0;
+            color: #fff; background: rgba(0,0,0,0.6);
+            font-size: 12px; text-align: center;
+        }
+
+        /* ─── RESPONSIVE ──────────────────────────── */
+        @media (max-width: 900px) {
+            .admin-sidebar {
+                width: 100% !important; height: auto !important;
+                position: static !important; flex-direction: row !important;
+                flex-wrap: wrap !important; padding: 0 !important;
+            }
+            .sb-brand { padding: 0.9rem 1rem !important; width: 100% !important; }
+            .sb-label { display: none !important; }
+            .admin-sidebar .admin-nav { width: 100% !important; order: 2 !important; }
+            .admin-sidebar .admin-nav ul {
+                display: flex !important; flex-direction: row !important; flex-wrap: wrap !important;
+                padding: 0.4rem 0.5rem !important; gap: 3px !important;
+            }
+            .admin-sidebar .admin-nav ul li { margin-bottom: 0 !important; width: auto !important; }
+            .admin-sidebar .admin-nav ul li a {
+                padding: 0.45rem 0.7rem !important; font-size: 0.78rem !important;
+                gap: 5px !important; border-radius: 8px !important;
+            }
+            .admin-sidebar .admin-nav ul li a .ni { width: 24px; height: 24px; font-size: 0.7rem; }
+            .admin-sidebar .admin-nav ul li a::before { display: none !important; }
+            .sb-logout { order: 3; padding: 0.4rem 0.5rem !important; width: auto !important; border: none !important; }
+            .sb-logout a { padding: 0.45rem 0.7rem !important; font-size: 0.78rem !important; }
+
+            .admin-main { margin-left: 0 !important; }
+            .admin-topbar { padding: 0 1rem; }
+            .tb-title { font-size: 1.05rem; }
+            .tb-date { display: none; }
+            .admin-body { padding: 1rem 0.8rem; }
+            .stats-row { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 500px) {
+            .stats-row { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr !important; }
+            .btn-row { flex-direction: column; }
+            .admin-topbar { flex-direction: column; height: auto; padding: 0.8rem 1rem; gap: 0.5rem; }
+        }
+
+        /* ─── ANIMATIONS ──────────────────────────── */
+        .s-card { animation: cardIn 0.35s ease both; }
+        .s-card:nth-child(1) { animation-delay: 0s; }
+        .s-card:nth-child(2) { animation-delay: 0.06s; }
+        .s-card:nth-child(3) { animation-delay: 0.12s; }
+        .s-card:nth-child(4) { animation-delay: 0.18s; }
+    </style>
+</head>
+
+<body>
+
+    <!-- PRELOADER -->
+    <div id="preloader">
+        <div class="loader">
+            <img src="images/BDJ.png" alt="BDJ Logo" class="preloader-logo">
+        </div>
+    </div>
+
+    <!-- ═══════════ SIDEBAR ═══════════ -->
+    <aside class="admin-sidebar">
+        <a href="index.html" class="sb-brand" style="text-decoration:none;">
+            <div class="sb-brand-icon"><img src="images/BDJ.png" alt="Logo"></div>
+            <div>
+                <div class="sb-brand-name">BDJ Admin</div>
+                <div class="sb-brand-sub">Baban Digwade Jewellers</div>
+            </div>
+        </a>
+
+        <nav class="admin-nav">
+            <p class="sb-label">Main</p>
+            <ul>
+                <li><a href="#" class="active"><span class="ni"><i class="fas fa-chart-pie"></i></span>Dashboard</a></li>
+                <li><a href="#rate-section"><span class="ni"><i class="fas fa-coins"></i></span>Metal Rates</a></li>
+            </ul>
+            <p class="sb-label">Catalog</p>
+            <ul>
+                <li><a href="#product-section"><span class="ni"><i class="fas fa-gem"></i></span>Add Product</a></li>
+                <li><a href="#home-collection-section"><span class="ni"><i class="fas fa-home"></i></span>Home Collections</a></li>
+                <li><a href="#collection-section"><span class="ni"><i class="fas fa-layer-group"></i></span>Collections</a></li>
+                <li><a href="#inventory"><span class="ni"><i class="fas fa-boxes"></i></span>Inventory</a></li>
+            </ul>
+            <p class="sb-label">Marketing</p>
+            <ul>
+                <li><a href="#scheme-section"><span class="ni"><i class="fas fa-star"></i></span>Schemes</a></li>
+                <li><a href="#promo-banner-section"><span class="ni"><i class="fas fa-rectangle-ad"></i></span>Promo Banner</a></li>
+                <li><a href="#celebration-section"><span class="ni"><i class="fas fa-gift"></i></span>Festival Wishes</a></li>
+            </ul>
+        </nav>
+
+        <div class="sb-logout">
+            <a href="#" onclick="handleLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </aside>
+
+    <!-- ═══════════ MAIN ═══════════ -->
+    <main class="admin-main">
+        <!-- TOPBAR -->
+        <div class="admin-topbar">
+            <div>
+                <div class="tb-title">Dashboard</div>
+                <div class="tb-date" id="topbar-date"></div>
+            </div>
+            <div class="tb-right">
+                <div class="tb-badge">
+                    <div class="tb-avatar"><i class="fas fa-user-shield"></i></div>
+                    <span class="tb-name">Admin</span>
+                </div>
+                <button onclick="handleLogout()" class="btn-logout-top">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="admin-body">
+
+            <!-- STATS -->
+            <div class="stats-row">
+                <div class="s-card c1">
+                    <div class="s-icon"><i class="fas fa-coins"></i></div>
+                    <div>
+                        <div class="s-label">Gold 22K</div>
+                        <div class="s-val" id="stat-gold">—</div>
+                        <div class="s-sub">per 10g</div>
+                    </div>
+                </div>
+                <div class="s-card c2">
+                    <div class="s-icon"><i class="fas fa-gem"></i></div>
+                    <div>
+                        <div class="s-label">Silver</div>
+                        <div class="s-val" id="stat-silver">—</div>
+                        <div class="s-sub">per gram</div>
+                    </div>
+                </div>
+                <div class="s-card c3">
+                    <div class="s-icon"><i class="fas fa-boxes"></i></div>
+                    <div>
+                        <div class="s-label">Products</div>
+                        <div class="s-val" id="stat-products">—</div>
+                        <div class="s-sub">in catalog</div>
+                    </div>
+                </div>
+                <div class="s-card c4">
+                    <div class="s-icon"><i class="fas fa-clock"></i></div>
+                    <div>
+                        <div class="s-label">Last Updated</div>
+                        <div class="s-val" id="stat-updated" style="font-size:0.9rem;">—</div>
+                        <div class="s-sub">live sync</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RATE ALERT -->
+            <div id="rate-reminder-alert">
+                <div style="display:flex;align-items:center;gap:1rem;flex:1;">
+                    <div class="alert-dot"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div>
+                        <h3 style="margin:0;font-size:0.95rem;font-weight:700;color:#1a1a2e;">Rates Not Updated Today!</h3>
+                        <p style="margin:3px 0 0;font-size:0.82rem;color:#888;">Precious metal rates haven't been updated for today's market.</p>
+                    </div>
+                </div>
+                <div class="btn-row" style="margin-top:0.4rem;">
+                    <a href="#rate-section" class="admin-btn b-dark" style="padding:0.5rem 1rem;font-size:0.8rem;">Update Now</a>
+                    <a href="https://wa.me/918390907528?text=Reminder%3A%20Please%20update%20the%20precious%20metal%20rates%20for%20Baban%20Digwade%20Jewellers%20today.%20https%3A%2F%2Fbdjewels.co.in%2Fadmin.html" target="_blank" class="admin-btn b-success" style="padding:0.5rem 1rem;font-size:0.8rem;">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Update+Jewelry+Rates+-+Baban+Digwade+Jewellers&details=Update+gold+and+silver+rates+on+the+admin+panel:+https://bdjewels.co.in/admin.html&recur=RRULE:FREQ=DAILY" target="_blank" class="admin-btn b-info" style="padding:0.5rem 1rem;font-size:0.8rem;">
+                        <i class="fas fa-calendar-plus"></i> Reminder
+                    </a>
+                </div>
+            </div>
+
+            <!-- ═══ METAL RATES ═══ -->
+            <section id="rate-section" class="admin-card">
+                <div class="c-head">
+                    <div class="c-icon"><i class="fas fa-coins"></i></div>
+                    <div class="c-head-text">
+                        <h2>Update Precious Metal Rates</h2>
+                        <p>Rates sync live to all visitors via Firebase</p>
+                    </div>
+                </div>
+                <div class="c-body">
+                    <form id="rate-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>18K Gold Rate (per 10g)</label>
+                                <input type="number" id="gold18k-input" placeholder="e.g. 46000">
+                            </div>
+                            <div class="form-group">
+                                <label>20K Gold Rate (per 10g)</label>
+                                <input type="number" id="gold20k-input" placeholder="e.g. 52000">
+                            </div>
+                            <div class="form-group">
+                                <label>22K Gold Rate (per 10g)</label>
+                                <input type="number" id="gold22k-input" placeholder="e.g. 58450">
+                            </div>
+                            <div class="form-group">
+                                <label>24K Gold Rate (per 10g)</label>
+                                <input type="number" id="gold24k-input" placeholder="e.g. 63760">
+                            </div>
+                            <div class="form-group">
+                                <label>Fine Silver Rate (per gram)</label>
+                                <input type="number" step="0.01" id="silver-input" placeholder="e.g. 74.2">
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button type="submit" class="admin-btn"><i class="fas fa-sync-alt"></i> Update Rates</button>
+                            <button type="button" class="admin-btn b-success" id="export-excel-btn">
+                                <i class="fas fa-file-excel"></i> Export CSV
+                            </button>
+                            <label class="admin-btn b-info" style="cursor:pointer;">
+                                <i class="fas fa-file-import"></i> Import CSV
+                                <input type="file" id="import-excel-input" accept=".csv" style="display:none;">
+                            </label>
+                        </div>
+                        <p id="rate-success" class="success-msg">Rates updated successfully!</p>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ═══ ADD PRODUCT ═══ -->
+            <section id="product-section" class="admin-card">
+                <div class="c-head">
+                    <div class="c-icon"><i class="fas fa-gem"></i></div>
+                    <div class="c-head-text">
+                        <h2>Add New Product</h2>
+                        <p>Product will go live instantly on the website</p>
+                    </div>
+                </div>
+                <div class="c-body">
+                    <form id="product-form">
+                        <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+                            <div class="form-group">
+                                <label>Product Name</label>
+                                <input type="text" id="prod-name" placeholder="Name of the piece" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="prod-category" required>
+                                    <option value="new">New Arrival</option>
+                                    <option value="gold">Gold</option>
+                                    <option value="silver">Silver</option>
+                                    <option value="collections">Collections</option>
+                                    <option value="gifting">Gifting Articles</option>
+                                    <option value="rings">Rings</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Item Code</label>
+                                <input type="text" id="prod-code" placeholder="e.g. BDJ-G-201" required>
+                            </div>
+                            <div class="form-group" id="weight-group">
+                                <label>Weight (g)</label>
+                                <input type="text" id="prod-weight" placeholder="e.g. 12.5g">
+                            </div>
+                            <div class="form-group">
+                                <label>Price (₹)</label>
+                                <input type="number" id="prod-price" placeholder="e.g. 15500">
+                            </div>
+                            <div class="form-group">
+                                <label>Sub Category</label>
+                                <select id="prod-subcategory">
+                                    <option value="neckless">Necklace</option>
+                                    <option value="earrings">Earrings</option>
+                                    <option value="rings">Rings</option>
+                                    <option value="bangales">Bangles</option>
+                                    <option value="mangalsutr">Mangalsutra</option>
+                                    <option value="jhumka">Jhumka</option>
+                                    <option value="wedding">Wedding Gifting</option>
+                                    <option value="corporate">Corporate Gifting</option>
+                                    <option value="personal">Personal Gifting</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Collection</label>
+                                <select id="prod-collection">
+                                    <!-- Populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Stock Status</label>
+                                <select id="prod-stock">
+                                    <option value="in-stock">In Stock</option>
+                                    <option value="out-of-stock">Out of Stock</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group" style="margin-top:0.3rem;">
+                            <label>Product Image (Drag &amp; Drop or Click)</label>
+                            <div class="drop-zone" id="image-drop-zone">
+                                <span class="drop-zone__prompt"><i class="fas fa-cloud-upload-alt" style="font-size:2rem;display:block;margin-bottom:0.5rem;color:var(--accent);"></i>
+                                    Drop image here or click to upload</span>
+                                <input type="file" name="myFile" class="drop-zone__input" id="prod-file-input" accept="image/*">
+                            </div>
+                            <p style="font-size:0.76rem;margin-top:6px;color:#bbb;">OR paste online Image URL:</p>
+                            <input type="text" id="prod-img-url" placeholder="https://images.unsplash.com/..." style="margin-top:3px;">
+                        </div>
+                        <div class="btn-row">
+                            <button type="submit" class="admin-btn"><i class="fas fa-plus-circle"></i> Add Product to Catalog</button>
+                        </div>
+                        <p id="prod-success" class="success-msg">Product data generated below. Copy it into data.js.</p>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ═══ COLLECTIONS ═══ -->
+            <section id="collection-section" class="admin-card">
+                <div class="c-head">
+                    <div class="c-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="c-head-text">
+                        <h2>Manage Collections</h2>
+                        <p>Add custom collections or push defaults to Firebase</p>
+                    </div>
+                </div>
+                <div class="c-body">
+                    <div class="info-tip">
+                        <strong>Tip:</strong> You can add your own custom collections here. If you want to manage the standard system collections (Bridal, Heritage, etc.) here too, use the initialization button at the bottom of this section.
+                    </div>
+                    <form id="collection-form">
+                        <div class="form-grid" style="grid-template-columns:1fr;">
+                            <div class="form-group">
+                                <label>Collection Name</label>
+                                <input type="text" id="coll-name" placeholder="e.g. Summer Special" required>
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button type="submit" class="admin-btn"><i class="fas fa-plus"></i> Add Collection</button>
+                        </div>
+                        <p id="coll-success" class="success-msg">Collection added successfully.</p>
+                    </form>
+
+                    <div class="sub-head">Existing Collections</div>
+                    <div id="collections-inventory" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:0.8rem;"></div>
+
+                    <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid #f0f0f0;text-align:center;">
+                        <p style="font-size:0.8rem;color:#bbb;margin-bottom:1rem;">Push all default collections to Firebase for cloud management:</p>
+                        <button type="button" class="admin-btn b-info" onclick="initializeDefaultCollections()">
+                            <i class="fas fa-magic"></i> Initialize All Collections to Cloud
+                        </button>
+                        <p id="init-success" class="success-msg" style="margin-top:10px;"></p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ PROMO BANNER ═══ -->
+            <section id="promo-banner-section" class="admin-card">
+                <div class="c-head">
+                    <div class="c-icon"><i class="fas fa-rectangle-ad"></i></div>
+                    <div class="c-head-text">
+                        <h2>Manage Hero Promo Banner</h2>
+                        <p>Appears as the first slide in the main carousel</p>
+                    </div>
+                </div>
+                <div class="c-body">
+                    <form id="promo-banner-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Banner Title</label>
+                                <input type="text" id="promo-title" placeholder="e.g. Mega Wedding Sale" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Subtitle / Description</label>
+                                <input type="text" id="promo-subtitle" placeholder="e.g. Get exclusive discounts..." required>
+                            </div>
+                            <div class="form-group" style="grid-column:1/-1;">
+                                <label>Banner Image (Drag &amp; Drop or Online URL)</label>
+                                <div class="drop-zone" id="promo-image-drop-zone">
+                                    <span class="drop-zone__prompt"><i class="fas fa-cloud-upload-alt" style="font-size:2rem;display:block;margin-bottom:0.5rem;color:var(--accent);"></i>
+                                        Drop image here or click to upload</span>
+                                    <input type="file" class="drop-zone__input" id="promo-file-input" accept="image/*">
+                                </div>
+                                <p style="font-size:0.76rem;margin-top:6px;color:#bbb;">OR paste online Image URL:</p>
+                                <input type="text" id="promo-img-url" placeholder="https://images.unsplash.com/..." style="margin-top:3px;">
+                            </div>
+                            <div class="form-group promo-btn-field">
+                                <label>Button Text</label>
+                                <input type="text" id="promo-btn-text" placeholder="e.g. Shop Now" required>
+                            </div>
+                            <div class="form-group promo-btn-field">
+                                <label>Button Link (e.g. gold, silver, schemes, rate)</label>
+                                <input type="text" id="promo-btn-link" placeholder="Simply type category name" required>
+                            </div>
+                            <div class="form-group" style="display:flex;align-items:center;gap:10px;margin-top:5px;">
+                                <input type="checkbox" id="promo-is-festival" style="width:auto;accent-color:var(--accent);">
+                                <label for="promo-is-festival" style="margin-bottom:0;">Mark as Festival Promo (Festive Styling)</label>
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button type="submit" class="admin-btn"><i class="fas fa-save"></i> Save Promo Banner</button>
+                            <button type="button" class="admin-btn b-danger" onclick="clearPromoBanner()">
+                                <i class="fas fa-times-circle"></i> Clear Banner
+                            </button>
+                        </div>
+                        <p id="promo-success" class="success-msg">Promo banner updated successfully.</p>
+                    </form>
+
+                    <div id="current-promo-preview" style="margin-top:2rem;padding:1.1rem;background:#f9f9f9;border:1px dashed #ddd;border-radius:12px;display:none;">
+                        <h3 style="font-size:0.8rem;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:0.8rem;">
+                            <i class="fas fa-eye" style="margin-right:5px;"></i>Current Active Promo
+                        </h3>
+                        <div style="display:flex;gap:1.5rem;align-items:center;">
+                            <img id="preview-promo-img" src="" alt="" style="width:140px;height:85px;object-fit:cover;border-radius:8px;">
+                            <div>
+                                <h4 id="preview-promo-title" style="margin:0;color:var(--maroon,#800000);font-size:0.95rem;"></h4>
+                                <p id="preview-promo-subtitle" style="margin:4px 0 0;font-size:0.82rem;color:#888;"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ INVENTORY ═══ -->
+            <section id="inventory" class="admin-card">
+                <div class="c-head">
+                    <div class="c-icon"><i class="fas fa-boxes"></i></div>
+                    <div class="c-head-text">
+                        <h2>Manage Inventory</h2>
+                        <p>Toggle stock status or delete products</p>
+                    </div>
+                </div>
+                <div class="c-body">
+                    <div id="inventory-list" class="inventory-grid">
+                        <p style="grid-column:1/-1;text-align:center;color:#bbb;padding:2.5rem;">
+                            <i class="fas fa-spinner fa-spin" style="font-size:1.3rem;margin-bottom:0.8rem;display:block;"></i>
+                            Loading products...
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ═══ SCHEMES ═══ -->
+            <section id="scheme-section" class="admin-card">
+                <div class="c-head">
+                    <div class="c-icon"><i class="fas fa-star"></i></div>
+                    <div class="c-head-text">
+                        <h2>Add New Scheme</h2>
+                        <p>Savings schemes visible on the Schemes page</p>
+                    </div>
+                </div>
+                <div class="c-body">
+                    <form id="scheme-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Scheme Name</label>
+                                <input type="text" id="scheme-name" placeholder="e.g. 11+1 Bonus Plan" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tagline</label>
+                                <input type="text" id="scheme-tagline" placeholder="e.g. Legacy Builder" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Highlight Text</label>
+                                <input type="text" id="scheme-highlight" placeholder="e.g. FREE 1 Month" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Category</label>
+                                <select id="scheme-type" required>
+                                    <option value="monthly">Monthly Scheme</option>
+                                    <option value="weekly">Weekly Scheme</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Description</label>
+                                <input type="text" id="scheme-desc" placeholder="e.g. The smartest way to own jewelry." required>
+                            </div>
+                            <div class="form-group" style="grid-column:1/-1;">
+                                <label>Features (Comma separated)</label>
+                                <textarea id="scheme-bullets" rows="3" placeholder="e.g. Minimum ₹1,000 per month, Pure 22K Gold purchase, Zero Making Charges" required></textarea>
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button type="submit" class="admin-btn"><i class="fas fa-save"></i> Save Scheme</button>
+                        </div>
+                        <p id="scheme-success" class="success-msg">Scheme added successfully.</p>
+                    </form>
+
+                    <div class="sub-head">Active Schemes</div>
+                    <div id="schemes-list" class="inventory-grid"></div>
+                </div>
+            </section>
+
+            <!-- ═══ FESTIVAL WISHES ═══ -->
+            <section id="celebration-section" class="admin-card">
+                <div class="c-head">
+                    <div class="c-icon"><i class="fas fa-gift"></i></div>
+                    <div class="c-head-text">
+                        <h2>Manage Festival Wishes</h2>
+                        <p>Add festive greetings that appear on the homepage</p>
+                    </div>
+                </div>
+                <div class="c-body">
+                    <form id="celebration-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Festival Title</label>
+                                <input type="text" id="fest-title" placeholder="e.g. Happy Holi" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tagline / Message</label>
+                                <input type="text" id="fest-tagline" placeholder="e.g. Season of Colors" required>
+                            </div>
+                            <div class="form-group" style="grid-column:1/-1;">
+                                <label>Image (Drag &amp; Drop or Online URL)</label>
+                                <div class="drop-zone" id="fest-image-drop-zone">
+                                    <span class="drop-zone__prompt"><i class="fas fa-cloud-upload-alt" style="font-size:2rem;display:block;margin-bottom:0.5rem;color:var(--accent);"></i>
+                                        Drop image here or click to upload</span>
+                                    <input type="file" class="drop-zone__input" id="fest-file-input" accept="image/*">
+                                </div>
+                                <p style="font-size:0.76rem;margin-top:6px;color:#bbb;">OR paste online Image URL:</p>
+                                <input type="text" id="fest-url" placeholder="https://images.unsplash.com/..." style="margin-top:3px;">
+                            </div>
+                        </div>
+                        <div class="btn-row">
+                            <button type="submit" class="admin-btn"><i class="fas fa-plus-circle"></i> Add Festive Wish</button>
+                        </div>
+                        <p id="fest-success" class="success-msg">Festive wish added successfully.</p>
+                    </form>
+
+                    <div class="sub-head">Active Wishes</div>
+                    <div id="celebrations-list" class="inventory-grid"></div>
+                </div>
+            </section>
+
+        </div><!-- /admin-body -->
+    </main>
+
+    <a href="https://wa.me/918390907528" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ═══════════ SCRIPTS ═══════════ -->
+    <script type="module" src="data.js"></script>
+    <script type="module" src="rate-sync.js"></script>
+    <script type="module" src="product-sync.js"></script>
+    <script type="module">
+        import { db, ref, set, push, remove, onValue, get } from './firebase-config.js';
+
+        // ── Topbar date ──
+        document.getElementById('topbar-date').textContent =
+            new Date().toLocaleDateString('en-IN', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+
+        // ── Active nav highlight ──
+        document.querySelectorAll('.admin-nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.admin-nav ul li a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            });
+        });
+
+        // Populate initial rates
+        const currentPrices = window.prices || {};
+        document.getElementById('gold18k-input').value = currentPrices.gold18k || '';
+        document.getElementById('gold20k-input').value = currentPrices.gold20k || '';
+        document.getElementById('gold22k-input').value = currentPrices.gold22k || '';
+        document.getElementById('gold24k-input').value = currentPrices.gold24k || '';
+        document.getElementById('silver-input').value = currentPrices.silver || '';
+
+        // ── Stats strip ──
+        function updateStats(p) {
+            if (!p) return;
+            const fmt = v => v ? '₹' + Number(v).toLocaleString('en-IN') : '—';
+            document.getElementById('stat-gold').textContent = fmt(p.gold22k);
+            document.getElementById('stat-silver').textContent = p.silver ? '₹' + p.silver : '—';
+            if (p.lastUpdate) document.getElementById('stat-updated').textContent = p.lastUpdate.split(',')[0];
+        }
+        updateStats(currentPrices);
+
+        // --- HELPER: Resolve Easy Links ---
+        const resolveEasyLink = (input) => {
+            const val = input.trim();
+            const lower = val.toLowerCase();
+            if (lower.includes('.html') || lower.includes('/') || lower.includes('http')) return val;
+            if (lower === 'schemes' || lower === 'scheme') return 'schemes.html';
+            if (lower === 'rate' || lower === 'rates' || lower === 'gold-rate') return 'rate.html';
+            if (lower === 'home' || lower === 'index') return 'index.html';
+            if (lower === 'auth' || lower === 'login' || lower === 'account') return 'auth.html';
+            if (lower === 'gold' || lower === 'silver' || lower === 'gifting' || lower === 'new' || lower === 'collections') return `category.html?type=${lower}`;
+            const allCollections = window.getCollectionsList ? window.getCollectionsList() : [];
+            if (allCollections.some(c => c.toLowerCase() === lower)) {
+                const actualName = allCollections.find(c => c.toLowerCase() === lower);
+                return `category.html?type=collections&collection=${encodeURIComponent(actualName)}`;
+            }
+            return `category.html?type=${encodeURIComponent(val)}`;
+        };
+
+        // Listen for productsReady event from product-sync.js
+        window.addEventListener('productsReady', (e) => {
+            const productsObj = e.detail;
+            const allProducts = [];
+            let count = 0;
+            Object.keys(productsObj).forEach(cat => {
+                productsObj[cat].forEach(p => {
+                    allProducts.push({ ...p, category: cat });
+                    count++;
+                });
+            });
+            document.getElementById('stat-products').textContent = count;
+            renderInventory(allProducts);
+        });
+
+        window.populateCollectionDropdown = function () {
+            const select = document.getElementById('prod-collection');
+            if (!select) return;
+            const defaultCols = window.DEFAULT_COLLECTIONS || [];
+            const custom = window._firebaseCustomCollections || [];
+            const all = [...new Set([...defaultCols, ...custom])];
+            select.innerHTML = all.map(c => `<option value="${c}">${c}</option>`).join('');
+        }
+
+        window.renderCollectionsList = function (customCollections) {
+            const container = document.getElementById('collections-inventory');
+            if (!container) return;
+
+            if (!customCollections || customCollections.length === 0) {
+                container.innerHTML = '<p style="font-size: 0.9rem; color: #888;">No custom collections added yet.</p>';
+            } else {
+                container.innerHTML = customCollections.map(c => `
+                    <div class="inv-card" style="flex-direction: row; align-items: center; justify-content: space-between; padding: 1rem;">
+                        <span style="font-weight: 600;">${c}</span>
+                        <button class="inv-btn btn-delete" style="flex: none; padding: 5px 10px;" onclick="deleteCollection('${c}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Load collections from Firebase and keep in sync
+        function loadCollectionsFromFirebase() {
+            onValue(ref(db, 'settings/customCollections'), (snapshot) => {
+                const custom = snapshot.exists() ? Object.values(snapshot.val()) : [];
+                window._firebaseCustomCollections = custom;
+                renderCollectionsList(custom);
+                populateCollectionDropdown();
+            });
+        }
+
+        // Handle Collection Addition — saves to Firebase
+        document.getElementById('collection-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('coll-name').value.trim();
+            if (!name) return;
+
+            const defaultCols = window.DEFAULT_COLLECTIONS || [];
+            const existing = window._firebaseCustomCollections || [];
+            if (existing.includes(name) || defaultCols.includes(name)) {
+                alert('Collection already exists!');
+                return;
+            }
+
+            try {
+                const key = name.replace(/[.#$/\[\]]/g, '_');
+                await set(ref(db, 'settings/customCollections/' + key), name);
+
+                const success = document.getElementById('coll-success');
+                success.textContent = '✅ Collection added! Now visible on the live website.';
+                success.style.color = '#27ae60';
+                success.style.display = 'block';
+                setTimeout(() => success.style.display = 'none', 3000);
+
+                e.target.reset();
+            } catch (err) {
+                alert('Failed to add collection: ' + err.message);
+            }
+        });
+
+
+        window.deleteCollection = async (name) => {
+            if (confirm(`Delete collection "${name}"? Products in this collection will remain.`)) {
+                try {
+                    const key = name.replace(/[.#$/\[\]]/g, '_');
+                    await remove(ref(db, 'settings/customCollections/' + key));
+                } catch (err) {
+                    alert('Failed to delete collection: ' + err.message);
+                }
+            }
+        };
+
+        window.initializeDefaultCollections = async () => {
+            const defaults = window.DEFAULT_COLLECTIONS || [];
+            if (defaults.length === 0) return;
+            
+            const btn = event.target.closest('button');
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Initializing...';
+
+            try {
+                for (const name of defaults) {
+                    const key = name.replace(/[.#$/\[\]]/g, '_');
+                    await set(ref(db, 'settings/customCollections/' + key), name);
+                }
+                const msg = document.getElementById('init-success');
+                msg.textContent = '✅ All default collections initialized to Firebase! You can now manage them below.';
+                msg.style.display = 'block';
+                setTimeout(() => msg.style.display = 'none', 5000);
+            } catch (err) {
+                alert('Initialization failed: ' + err.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = originalText;
+            }
+        };
+
+        // Handle Rate Update
+        const rateForm = document.getElementById('rate-form');
+        const rateSuccess = document.getElementById('rate-success');
+
+        if (rateForm) {
+            rateForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const newPrices = {
+                    gold18k: parseFloat(document.getElementById('gold18k-input').value),
+                    gold20k: parseFloat(document.getElementById('gold20k-input').value),
+                    gold22k: parseFloat(document.getElementById('gold22k-input').value),
+                    gold24k: parseFloat(document.getElementById('gold24k-input').value),
+                    silver: parseFloat(document.getElementById('silver-input').value),
+                    lastUpdate: new Date().toLocaleString()
+                };
+
+                try {
+                    localStorage.setItem('bdj_prices', JSON.stringify(newPrices));
+                    await set(ref(db, 'settings/rates'), newPrices);
+
+                    rateSuccess.textContent = "✅ Rates updated successfully to Cloud Database!";
+                    rateSuccess.style.color = "#27ae60";
+                    rateSuccess.style.display = 'block';
+                    updateStats(newPrices);
+                    setTimeout(() => { rateSuccess.style.display = 'none'; }, 4000);
+
+                    if (typeof checkRateFreshness === 'function') checkRateFreshness();
+                } catch (error) {
+                    console.error("Error updating rates in Firebase:", error);
+                    rateSuccess.textContent = "Failed to update rates: " + error.message;
+                    rateSuccess.style.color = "#c62828";
+                    rateSuccess.style.display = 'block';
+                }
+            });
+        }
+
+        // Excel Export Logic
+        const exportBtn = document.getElementById('export-excel-btn');
+        if (exportBtn) {
+            exportBtn.addEventListener('click', () => {
+                const currentPrices = JSON.parse(localStorage.getItem('bdj_prices') || JSON.stringify(window.prices || {}));
+                let csvContent = "Metal Name,Rate (per 10g/gram),Purity/Type\n";
+                csvContent += `18K Gold,${currentPrices.gold18k},18K Gold\n`;
+                csvContent += `20K Gold,${currentPrices.gold20k},20K Gold\n`;
+                csvContent += `22K Gold,${currentPrices.gold22k},22K Gold\n`;
+                csvContent += `24K Gold,${currentPrices.gold24k},24K Gold\n`;
+                csvContent += `Fine Silver,${currentPrices.silver},per gram\n`;
+
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement("a");
+                const url = URL.createObjectURL(blob);
+                link.setAttribute("href", url);
+                link.setAttribute("download", "rates.csv");
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        }
+
+        // Excel Import Logic
+        const importInput = document.getElementById('import-excel-input');
+        if (importInput) {
+            importInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    const content = event.target.result;
+                    const lines = content.split('\n');
+                    const newPrices = { ...(window.prices || {}) };
+
+                    lines.forEach(line => {
+                        const parts = line.split(',');
+                        if (parts.length >= 2) {
+                            const name = parts[0].trim();
+                            const val = parseFloat(parts[1]);
+                            if (!isNaN(val)) {
+                                if (name.includes('18K')) newPrices.gold18k = val;
+                                else if (name.includes('20K')) newPrices.gold20k = val;
+                                else if (name.includes('22K')) newPrices.gold22k = val;
+                                else if (name.includes('24K')) newPrices.gold24k = val;
+                                else if (name.includes('Silver')) newPrices.silver = val;
+                            }
+                        }
+                    });
+
+                    newPrices.lastUpdate = new Date().toLocaleString();
+                    localStorage.setItem('bdj_prices', JSON.stringify(newPrices));
+
+                    document.getElementById('gold18k-input').value = newPrices.gold18k;
+                    document.getElementById('gold20k-input').value = newPrices.gold20k;
+                    document.getElementById('gold22k-input').value = newPrices.gold22k;
+                    document.getElementById('gold24k-input').value = newPrices.gold24k;
+                    document.getElementById('silver-input').value = newPrices.silver;
+
+                    rateSuccess.textContent = "✅ Rates imported from Excel successfully!";
+                    rateSuccess.style.color = "#27ae60";
+                    rateSuccess.style.display = 'block';
+                    updateStats(newPrices);
+                    setTimeout(() => {
+                        rateSuccess.style.display = 'none';
+                    }, 4000);
+                };
+                reader.readAsText(file);
+            });
+        }
+
+        // Handle Product Addition
+        document.getElementById('product-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const success = document.getElementById('prod-success');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Adding...';
+
+            const category = document.getElementById('prod-category').value;
+            const code = document.getElementById('prod-code').value;
+            const stock = document.getElementById('prod-stock').value;
+            const price = document.getElementById('prod-price').value;
+
+            const imgValue = window.uploadedImageBase64 || document.getElementById('prod-img-url')?.value || 'images/BDJ.png';
+
+            const newProduct = {
+                code: code,
+                name: document.getElementById('prod-name').value,
+                weight: document.getElementById('prod-weight').value,
+                price: price ? parseFloat(price) : null,
+                subCategory: document.getElementById('prod-subcategory').value,
+                img: imgValue,
+                details: {
+                    metal: category === 'silver' ? 'Silver' : 'Gold',
+                    purity: category === 'silver' ? '92.5 Sterl' : '22KT',
+                    color: 'Yellow Gold',
+                    collection: document.getElementById('prod-collection').value
+                },
+                category: category,
+                stockStatus: stock
+            };
+
+            try {
+                const customProdRef = ref(db, 'products/custom/' + code);
+                await set(customProdRef, newProduct);
+                await set(ref(db, 'products/stockStatus/' + code), stock);
+
+                success.textContent = "✅ Product added successfully! It is now LIVE on the website for all users.";
+                success.style.color = '#27ae60';
+                success.style.display = 'block';
+                setTimeout(() => success.style.display = 'none', 4000);
+
+                e.target.reset();
+                window.uploadedImageBase64 = null;
+                const dropZone = document.getElementById('image-drop-zone');
+                if (dropZone) {
+                    const thumb = dropZone.querySelector('.drop-zone__thumb');
+                    if (thumb) thumb.remove();
+                    if (!dropZone.querySelector('.drop-zone__prompt')) {
+                        const prompt = document.createElement('span');
+                        prompt.className = 'drop-zone__prompt';
+                        prompt.innerHTML = '<i class="fas fa-cloud-upload-alt" style="font-size: 2rem; display: block; margin-bottom: 0.5rem; color: var(--gold);"></i> Drop image here or click to upload';
+                        dropZone.appendChild(prompt);
+                    }
+                }
+            } catch (err) {
+                console.error('Error saving product to Firebase:', err);
+                success.textContent = '❌ Failed to save: ' + err.message;
+                success.style.color = '#c62828';
+                success.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Add Product to Catalog';
+            }
+        });
+
+        window.renderInventory = function (allProducts) {
+            const container = document.getElementById('inventory-list');
+            container.innerHTML = '';
+
+            if (!allProducts || allProducts.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666; padding: 2rem;">No products found.</p>';
+                return;
+            }
+
+            document.getElementById('stat-products').textContent = allProducts.length;
+
+            allProducts.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'inv-card';
+                const isCustom = item._isCustom;
+                const statusClass = item.stockStatus === 'in-stock' ? 'status-in' : 'status-out';
+                const statusText = item.stockStatus === 'in-stock' ? 'In Stock' : 'Out of Stock';
+
+                card.innerHTML = `
+                    <div style="display:flex; justify-content: space-between; align-items: flex-start;">
+                        <span class="status-badge ${statusClass}">${statusText}</span>
+                        <small style="color:#888;">${(item.category || '').toUpperCase()} ${isCustom ? '<span style="color:var(--gold-dark);">(Admin Added)</span>' : ''}</small>
+                    </div>
+                    <img src="${item.img}" alt="${item.name}">
+                    <h4 style="margin: 0.5rem 0 0.2rem 0; font-size:0.9rem;">${item.name}</h4>
+                    <p style="margin:0; font-size:0.8rem; color:var(--gold-dark); font-weight:700;">Code: ${item.code}</p>
+                    <p style="margin:0; font-size:0.8rem; color:var(--maroon); font-weight:700;">Price: ${item.price ? '₹' + item.price.toLocaleString() : 'N/A'}</p>
+                    <div class="inv-actions">
+                        <button class="inv-btn btn-toggle" onclick="toggleStock('${item.code}', '${item.stockStatus}', ${isCustom})">
+                            <i class="fas fa-sync"></i> Toggle
+                        </button>
+                        <button class="inv-btn btn-delete" onclick="deleteProduct('${item.code}', ${isCustom})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        };
+
+
+
+        window.toggleStock = async (code, current, isCustom) => {
+            const newStatus = current === 'in-stock' ? 'out-of-stock' : 'in-stock';
+            try {
+                await set(ref(db, 'products/stockStatus/' + code), newStatus);
+                if (isCustom) {
+                    await set(ref(db, 'products/custom/' + code + '/stockStatus'), newStatus);
+                }
+            } catch (err) {
+                alert('Failed to update stock: ' + err.message);
+            }
+        };
+
+        window.deleteProduct = async (code, isCustom) => {
+            if (confirm(`Are you sure you want to delete product ${code}?`)) {
+                try {
+                    if (isCustom) {
+                        await remove(ref(db, 'products/custom/' + code));
+                        await remove(ref(db, 'products/stockStatus/' + code));
+                    } else {
+                        await set(ref(db, 'products/deleted/' + code), true);
+                    }
+                } catch (err) {
+                    alert('Failed to delete product: ' + err.message);
+                }
+            }
+        };
+
+        // --- SCHEMES MANAGEMENT ---
+
+        document.getElementById('scheme-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const success = document.getElementById('scheme-success');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            const schemeId = 'scheme-' + Date.now();
+
+            const bulletsInput = document.getElementById('scheme-bullets').value;
+            const bulletsArray = bulletsInput.split(',').map(item => {
+                return { icon: 'fas fa-star', text: item.trim() }
+            }).filter(item => item.text !== '');
+
+            const newScheme = {
+                id: schemeId,
+                type: document.getElementById('scheme-type').value,
+                name: document.getElementById('scheme-name').value,
+                tagline: document.getElementById('scheme-tagline').value,
+                highlight: document.getElementById('scheme-highlight').value,
+                description: document.getElementById('scheme-desc').value,
+                bullets: bulletsArray,
+                btnLabel: 'Join Scheme',
+                themeColor: document.getElementById('scheme-type').value === 'weekly' ? '#d4af37' : 'var(--charcoal)'
+            };
+
+            try {
+                await set(ref(db, 'settings/schemes/' + schemeId), newScheme);
+
+                success.textContent = "✅ Scheme saved! Now visible on the live website.";
+                success.style.display = 'block';
+                setTimeout(() => success.style.display = 'none', 3000);
+                e.target.reset();
+            } catch (err) {
+                alert('Failed to save scheme: ' + err.message);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save Scheme';
+            }
+        });
+
+        window.renderSchemes = function () {
+            onValue(ref(db, 'settings/schemes'), (snapshot) => {
+                const container = document.getElementById('schemes-list');
+                if (!container) return;
+                container.innerHTML = '';
+
+                let firebaseSchemes = snapshot.exists() ? Object.values(snapshot.val()) : [];
+                let currentSchemes = firebaseSchemes.length > 0 ? firebaseSchemes : (window.schemesList || []);
+
+                if (currentSchemes.length === 0) {
+                    container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666; padding: 2rem;">No active schemes found.</p>';
+                    return;
+                }
+
+                currentSchemes.forEach(scheme => {
+                    const card = document.createElement('div');
+                    card.className = 'inv-card';
+                    card.style.padding = '1.5rem';
+
+                    let bulletsHtml = scheme.bullets.map(b => `<li style="font-size: 0.8rem; margin-bottom: 4px;"><i class="${b.icon}" style="color:var(--gold); font-size:10px;"></i> ${b.text}</li>`).join('');
+
+                    card.innerHTML = `
+                    <div style="display:flex; justify-content: space-between; align-items: flex-start;">
+                        <span class="status-badge status-in">ACTIVE</span>
+                        <small style="color:#888;">${(scheme.type || 'monthly').toUpperCase()} | ${scheme.tagline}</small>
+                    </div>
+                    <h4 style="margin: 0.5rem 0 0.2rem 0; font-size:1.1rem; color: var(--maroon);">${scheme.name}</h4>
+                    <p style="margin:0; font-size:0.9rem; color:var(--gold-dark); font-weight:700;">${scheme.highlight}</p>
+                    <p style="font-size: 0.85rem; color: #666; margin: 10px 0;">${scheme.description}</p>
+                    <ul style="list-style: none; padding: 0; margin-bottom: 20px;">
+                        ${bulletsHtml}
+                    </ul>
+                    <div class="inv-actions" style="margin-top: auto;">
+                        <button class="inv-btn btn-delete" onclick="deleteScheme('${scheme.id}')">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                `;
+                    container.appendChild(card);
+                });
+            });
+        };
+
+        window.deleteScheme = async (id) => {
+            if (confirm('Are you sure you want to delete this scheme?')) {
+                try {
+                    await remove(ref(db, 'settings/schemes/' + id));
+                } catch (err) {
+                    alert('Failed to delete scheme: ' + err.message);
+                }
+            }
+        };
+
+        // --- PROMO BANNER MANAGEMENT ---
+
+        document.getElementById('promo-banner-form')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const success = document.getElementById('promo-success');
+            const submitBtn = e.target.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Saving...';
+
+            const bannerData = {
+                title: document.getElementById('promo-title').value,
+                subtitle: document.getElementById('promo-subtitle').value,
+                img: window.uploadedPromoImageBase64 || document.getElementById('promo-img-url').value,
+                btnText: document.getElementById('promo-btn-text').value,
+                btnLink: resolveEasyLink(document.getElementById('promo-btn-link').value),
+                isFestival: document.getElementById('promo-is-festival').checked
+            };
+
+            try {
+                await set(ref(db, 'settings/heroBanner'), bannerData);
+
+                success.textContent = '✅ Promo banner saved! Now LIVE on the website for all visitors.';
+                success.style.color = '#27ae60';
+                success.style.display = 'block';
+                setTimeout(() => success.style.display = 'none', 4000);
+
+                loadPromoBanner();
+            } catch (err) {
+                console.error('Error saving banner:', err);
+                success.textContent = '❌ Failed to save banner: ' + err.message;
+                success.style.color = '#c62828';
+                success.style.display = 'block';
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Save Promo Banner';
+            }
+        });
+
+        window.loadPromoBanner = function () {
+            const preview = document.getElementById('current-promo-preview');
+
+            import('./firebase-config.js').then(({ db, ref, onValue }) => {
+                onValue(ref(db, 'settings/heroBanner'), (snapshot) => {
+                    if (snapshot.exists()) {
+                        const data = snapshot.val();
+                        document.getElementById('promo-title').value = data.title || '';
+                        document.getElementById('promo-subtitle').value = data.subtitle || '';
+                        document.getElementById('promo-img-url').value = data.img || '';
+                        document.getElementById('promo-btn-text').value = data.btnText || '';
+                        document.getElementById('promo-btn-link').value = data.btnLink || '';
+                        document.getElementById('promo-is-festival').checked = data.isFestival || false;
+
+                        togglePromoButtonFields();
+
+                        document.getElementById('preview-promo-title').textContent = data.title + (data.isFestival ? ' (Festive)' : '');
+                        document.getElementById('preview-promo-subtitle').textContent = data.subtitle;
+                        document.getElementById('preview-promo-img').src = data.img;
+                        preview.style.display = 'block';
+                    } else {
+                        preview.style.display = 'none';
+                    }
+                }, { onlyOnce: true });
+            });
+        }
+
+        // Toggle button fields based on festival checkbox
+        window.togglePromoButtonFields = function () {
+            const isFestival = document.getElementById('promo-is-festival').checked;
+            const btnFields = document.querySelectorAll('.promo-btn-field');
+            btnFields.forEach(field => {
+                field.style.display = isFestival ? 'none' : 'block';
+                const input = field.querySelector('input');
+                if (input) {
+                    if (isFestival) {
+                        input.removeAttribute('required');
+                    } else {
+                        input.setAttribute('required', '');
+                    }
+                }
+            });
+        }
+
+        document.getElementById('promo-is-festival')?.addEventListener('change', togglePromoButtonFields);
+
+        window.clearPromoBanner = async () => {
+            if (confirm('Are you sure you want to remove the promo banner?')) {
+                try {
+                    await set(ref(db, 'settings/heroBanner'), null);
+
+                    window.uploadedPromoImageBase64 = null;
+                    const dropZone = document.getElementById('promo-image-drop-zone');
+                    if (dropZone) {
+                        if (dropZone.querySelector(".drop-zone__thumb")) dropZone.querySelector(".drop-zone__thumb").remove();
+                        if (!dropZone.querySelector(".drop-zone__prompt")) {
+                            const prompt = document.createElement("span");
+                            prompt.className = "drop-zone__prompt";
+                            prompt.innerHTML = '<i class="fas fa-cloud-upload-alt" style="font-size: 2rem; display: block; margin-bottom: 0.5rem; color: var(--gold);"></i> Drop image here or click to upload';
+                            dropZone.appendChild(prompt);
+                        }
+                    }
+                    document.getElementById('promo-banner-form').reset();
+                    document.getElementById('current-promo-preview').style.display = 'none';
+                    alert('Promo banner removed from live website.');
+                } catch (err) {
+                    alert('Failed to remove banner: ' + err.message);
+                }
+            }
+        };
+
+        // --- CELEBRATIONS MANAGEMENT ---
+
+        document.getElementById('celebration-form')?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const success = document.getElementById('fest-success');
+
+            const newFest = {
+                id: 'fest-' + Date.now(),
+                title: document.getElementById('fest-title').value,
+                tagline: document.getElementById('fest-tagline').value,
+                img: document.getElementById('fest-url').value || window.uploadedFestivalImageBase64 || 'images/BDJ.png',
+                createdAt: Date.now()
+            };
+
+            let currentCelebrations = JSON.parse(localStorage.getItem('bdj_celebrations'));
+            if (!currentCelebrations) {
+                currentCelebrations = window.celebrations || [];
+            }
+
+            currentCelebrations.push(newFest);
+            localStorage.setItem('bdj_celebrations', JSON.stringify(currentCelebrations));
+
+            success.style.display = 'block';
+            setTimeout(() => success.style.display = 'none', 3000);
+
+            e.target.reset();
+            window.uploadedFestivalImageBase64 = null;
+            // Reset drop zone
+            const dropZone = document.getElementById('fest-image-drop-zone');
+            if (dropZone) {
+                const thumb = dropZone.querySelector('.drop-zone__thumb');
+                if (thumb) thumb.remove();
+                if (!dropZone.querySelector('.drop-zone__prompt')) {
+                    const prompt = document.createElement('span');
+                    prompt.className = 'drop-zone__prompt';
+                    prompt.innerHTML = '<i class="fas fa-cloud-upload-alt" style="font-size: 2rem; display: block; margin-bottom: 0.5rem; color: var(--gold);"></i> Drop image here or click to upload';
+                    dropZone.appendChild(prompt);
+                }
+            }
+            renderCelebrations();
+        });
+
+        window.renderCelebrations = function () {
+            const container = document.getElementById('celebrations-list');
+            if (!container) return;
+            container.innerHTML = '';
+
+            let currentCelebrations = JSON.parse(localStorage.getItem('bdj_celebrations'));
+            if (!currentCelebrations) {
+                currentCelebrations = window.celebrations || [];
+            }
+
+            if (currentCelebrations.length === 0) {
+                container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #666; padding: 2rem;">No festival wishes found.</p>';
+                return;
+            }
+
+            currentCelebrations.forEach(fest => {
+                const ageHours = Math.floor((Date.now() - (fest.createdAt || 0)) / (1000 * 60 * 60));
+                const statusBadge = ageHours < 24 ? '<span class="status-badge status-in">LIVE</span>' : '<span class="status-badge status-out">EXPIRED</span>';
+
+                const card = document.createElement('div');
+                card.className = 'inv-card';
+                card.innerHTML = `
+                    <div style="display:flex; justify-content: space-between; align-items: flex-start;">
+                        ${statusBadge}
+                        <small style="color:#888;">${ageHours}h old</small>
+                    </div>
+                    <img src="${fest.img}" alt="${fest.title}" style="height: 120px;">
+                    <h4 style="margin: 0.5rem 0 0.2rem 0; font-size:1rem; color: var(--maroon);">${fest.title}</h4>
+                    <p style="margin:0; font-size:0.85rem; color:#666;">${fest.tagline}</p>
+                    <div class="inv-actions" style="margin-top: 1rem;">
+                        <button class="inv-btn btn-delete" onclick="deleteCelebration('${fest.id}')">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        window.deleteCelebration = (id) => {
+            if (confirm('Are you sure you want to delete this festive wish?')) {
+                let currentCelebrations = JSON.parse(localStorage.getItem('bdj_celebrations'));
+                if (!currentCelebrations) currentCelebrations = window.celebrations;
+
+                currentCelebrations = currentCelebrations.filter(f => f.id !== id);
+                localStorage.setItem('bdj_celebrations', JSON.stringify(currentCelebrations));
+                renderCelebrations();
+            }
+        };
+
+        window.handleLogout = () => {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('bdj_admin_session');
+                window.location.href = 'auth.html';
+            }
+        };
+
+        // --- Drop Zone Logic ---
+        document.querySelectorAll(".drop-zone__input").forEach((inputElement) => {
+            const dropZoneElement = inputElement.closest(".drop-zone");
+
+            dropZoneElement.addEventListener("click", (e) => {
+                inputElement.click();
+            });
+
+            inputElement.addEventListener("change", (e) => {
+                if (inputElement.files.length) {
+                    updateThumbnail(dropZoneElement, inputElement.files[0]);
+                }
+            });
+
+            dropZoneElement.addEventListener("dragover", (e) => {
+                e.preventDefault();
+                dropZoneElement.classList.add("drop-zone--over");
+            });
+
+            ["dragleave", "dragend"].forEach((type) => {
+                dropZoneElement.addEventListener(type, (e) => {
+                    dropZoneElement.classList.remove("drop-zone--over");
+                });
+            });
+
+            dropZoneElement.addEventListener("drop", (e) => {
+                e.preventDefault();
+
+                if (e.dataTransfer.files.length) {
+                    inputElement.files = e.dataTransfer.files;
+                    updateThumbnail(dropZoneElement, e.dataTransfer.files[0]);
+                }
+
+                dropZoneElement.classList.remove("drop-zone--over");
+            });
+        });
+
+        function updateThumbnail(dropZoneElement, file) {
+            let thumbnailElement = dropZoneElement.querySelector(".drop-zone__thumb");
+
+            if (dropZoneElement.querySelector(".drop-zone__prompt")) {
+                dropZoneElement.querySelector(".drop-zone__prompt").remove();
+            }
+
+            if (!thumbnailElement) {
+                thumbnailElement = document.createElement("div");
+                thumbnailElement.classList.add("drop-zone__thumb");
+                dropZoneElement.appendChild(thumbnailElement);
+            }
+
+            thumbnailElement.dataset.label = file.name;
+
+            if (file.type.startsWith("image/")) {
+                const reader = new FileReader();
+
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    thumbnailElement.style.backgroundImage = `url('${reader.result}')`;
+                    if (dropZoneElement.id === 'fest-image-drop-zone') {
+                        window.uploadedFestivalImageBase64 = reader.result;
+                    } else if (dropZoneElement.id === 'promo-image-drop-zone') {
+                        window.uploadedPromoImageBase64 = reader.result;
+                    } else {
+                        window.uploadedImageBase64 = reader.result;
+                    }
+                };
+            } else {
+                thumbnailElement.style.backgroundImage = null;
+                window.uploadedImageBase64 = null;
+            }
+        }
+
+        // --- GLOBAL INITIALIZATION ---
+        window.addEventListener('load', () => {
+            console.log('Admin Dashboard Initializing...');
+            
+            if (typeof loadCollectionsFromFirebase === 'function') loadCollectionsFromFirebase();
+            if (typeof populateCollectionDropdown === 'function') populateCollectionDropdown();
+            if (typeof renderSchemes === 'function') renderSchemes();
+            if (typeof renderCelebrations === 'function') renderCelebrations();
+            if (typeof loadPromoBanner === 'function') loadPromoBanner();
+            if (typeof checkRateFreshness === 'function') checkRateFreshness();
+        });
+
+        window.checkRateFreshness = function() {
+            const alertBox = document.getElementById('rate-reminder-alert');
+            if (!alertBox) return;
+
+            const currentTimestamp = window.prices && window.prices.lastUpdate;
+            
+            if ("Notification" in window && Notification.permission === "default") {
+                Notification.requestPermission();
+            }
+
+            if (!currentTimestamp) {
+                alertBox.style.display = 'flex';
+                triggerNotification();
+                return;
+            }
+
+            try {
+                const lastDateStr = currentTimestamp.split(',')[0];
+                const todayDateStr = new Date().toLocaleDateString();
+
+                if (lastDateStr !== todayDateStr) {
+                    alertBox.style.display = 'flex';
+                    triggerNotification();
+                } else {
+                    alertBox.style.display = 'none';
+                }
+            } catch (e) {
+                console.error("Error checking rate freshness:", e);
+                alertBox.style.display = 'flex';
+            }
+        };
+
+        function triggerNotification() {
+            if ("Notification" in window && Notification.permission === "granted") {
+                new Notification("Rates Outdated!", {
+                    body: "Baban Digwade Jewellers rates haven't been updated today.",
+                    icon: "images/BDJ.png"
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
